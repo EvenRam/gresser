@@ -24,7 +24,6 @@ CREATE TABLE "user" (
     
 );
 
-
 CREATE TABLE IF NOT EXISTS "Jobs" (
 	"JobID" bigint GENERATED ALWAYS AS IDENTITY NOT NULL UNIQUE,
 	"JobName" text NOT NULL,
