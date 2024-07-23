@@ -33,3 +33,18 @@ CREATE TABLE IF NOT EXISTS "Jobs" (
 	PRIMARY KEY ("JobID")
 );
 
+CREATE TABLE "add_employee" (
+	"id" SERIAL PRIMARY KEY, 
+	"first_name" VARCHAR(80),
+	"last_name" VARCHAR(80),
+	"employee_number" VARCHAR(80),
+	"union_id" VARCHAR(80),
+	"employee_status" BOOLEAN,
+	"phone_number" VARCHAR(80),
+	"email" VARCHAR(80),
+	"address" VARCHAR(120)
+);
+
+INSERT INTO "add_employee" 
+("first_name", "last_name", "employee_number", "union_id", "employee_status", "phone_number", "email", "address") 
+VALUES ('John', 'Doe', '12345', '67890', 'true', '123-456-7890', 'john.doe@example.com', '123 Main St');
