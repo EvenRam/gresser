@@ -19,6 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import AddEmployee from '../AddEmployee/AddEmployee';
+import EditEmployee from '../AddEmployee/EditAddEmployee';
 
 import './App.css';
 
@@ -111,6 +113,14 @@ function App() {
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
+
+          <Route exact path="/addemployee">
+            <AddEmployee />
+          </Route>
+
+          <ProtectedRoute exact path="/editemployee">
+            <EditEmployee />
+          </ProtectedRoute>
           <Route>
             <h1>404</h1>
           </Route>
