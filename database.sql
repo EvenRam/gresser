@@ -29,7 +29,7 @@ CREATE TABLE "user" (
 
 
 CREATE TABLE "jobs" (
-	"id" SERIAL PRIMARY KEY,
+	"job_id" SERIAL PRIMARY KEY,
 	"job_number" INT, 
 	"job_name" VARCHAR (1000),
 	"location" VARCHAR (1000),
