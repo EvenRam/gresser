@@ -2,9 +2,20 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function RegisterForm() {
-  const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [employee, setEmployee] = useState('');
+  const [email, setEmail] = useState('');  
   const [password, setPassword] = useState('');
+
+  console.log("email", email)
+  console.log("lastname", lastName)
+  console.log("firstname", firstName)
+  console.log("employee", employee)
+
+
   const errors = useSelector((store) => store.errors);
+
   const dispatch = useDispatch();
 
   const registerUser = (event) => {
@@ -13,7 +24,10 @@ function RegisterForm() {
     dispatch({
       type: 'REGISTER',
       payload: {
-        username: username,
+        first_name: firstName,
+        last_name: lastName,
+        employee_number: employee,
+        email: email,
         password: password,
       },
     });
@@ -29,16 +43,56 @@ function RegisterForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
+          First Name:
           <input
             type="text"
             name="username"
-            value={username}
+            value={firstName}
             required
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={(event) => setFirstName(event.target.value)}
           />
         </label>
       </div>
+
+      <div>
+        <label htmlFor="lastname">
+          Last Name:
+          <input
+            type="text"
+            name="last name"
+            required
+            value={lastName}
+            onChange={(event) => setLastName(event.target.value)}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="employee-number">
+          Employee Number:
+          <input
+            type="text"
+            name="employee-number"
+            required
+            value={employee}
+            onChange={(event) => setEmployee(event.target.value)}
+          />
+        </label>
+        </div>
+
+        <div>
+        <label htmlFor="email">
+          E-mail:
+          <input
+            type="text"
+            name="email"
+            required
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </label>
+      </div>
+
       <div>
         <label htmlFor="password">
           Password:
