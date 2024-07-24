@@ -9,7 +9,7 @@ const EditForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const editJob = useSelector((store) => store.editReducer)
+    const editJob = useSelector((store) => store.editJobReducer)
 
     function handleNumberChange(event) {
         dispatch({

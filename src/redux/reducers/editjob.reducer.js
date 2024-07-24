@@ -1,6 +1,6 @@
 
 
-const editReducer = (state = [], action) => {
+const editJobReducer = (state = [], action) => {
 
 
     if(action.type === "SET_JOB"){
@@ -15,4 +15,4 @@ const editReducer = (state = [], action) => {
     }
         return state;
     }
-    export default editReducer
+    export default editJobReducer
