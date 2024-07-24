@@ -12,7 +12,7 @@ const JobDetails = (props) => {
 
     const jobs = useSelector(store => store.jobReducer)
 
-    const [status, setStatus] = useState('active')
+    const [status, setStatus] = useState('')
 
 
     const handleEdit = () => {
@@ -31,6 +31,7 @@ const JobDetails = (props) => {
             payload: { jobid: props.job.job_id }
         });
     };
+
     const toggleStatus = () => {
         setStatus(!status)
     }

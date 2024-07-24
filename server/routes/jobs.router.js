@@ -33,16 +33,21 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     console.log("Current user is:", req.user.username);
     console.log("Current request body is:", req.body);
 
-    const { job_number, job_name, location, start_date, end_date, status } = req.body;
+    
+    const jobInfo = req.body
+
+
+
+    
+    const jobs= [ jobInfo.job_number, jobInfo.job_name, jobInfo.location,jobInfo.start_date , jobInfo.end_date_date , jobInfo.status ]
 
     const queryText = `
         INSERT INTO "jobs" ("job_number", "job_name", "location", "start_date", "end_date", "status")
         VALUES ($1, $2, $3, $4, $5, $6) RETURNING "job_id"
     `;
-    const values = [job_number, job_name, location, start_date, end_date, status];
-    console.log("values", values)
+    console.log("values", jobs)
 
-    pool.query(queryText, values)
+    pool.query(queryText,jobs )
         .then(() => {
             res.sendStatus(201); // 201 Created for successful creation
         })
@@ -52,9 +57,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:job_id', (req, res) => {
 
-    const idToUpdate = req.params.id;
+    const idToUpdate = req.params.job_id;
     const editJob = req.body
 
     console.log('req.body', editJob)
@@ -97,28 +102,27 @@ router.put('/:id', (req, res) => {
         })
 })
 
-router.delete('/:job_id', (req, res) =>{
+router.delete('/:job_id', (req, res) => {
     const jobId = req.params.job_id;
-    console.log('Delete request for jobId', jobId)
-
-
+    console.log('Delete request for jobId', jobId);
 
     const queryText = `
-    DELETE FROM "jobs"
-    WHERE "job_id" = $1;
+        DELETE FROM "jobs"
+        WHERE "job_id" = $1;
     `;
-pool.query(queryText, [jobId])
-.then((result) =>{
-    if(result.rowCount > 0){
-        res.sendStatus(204)
-    }else{
-        res.sendStatus(403)
-    }
-})
-.catch((error) => {
-    console.log('error making query... `${queryText}`',error)
-    res.sendStatus(500)
-})
-})
+    
+    pool.query(queryText, [jobId])
+        .then((result) => {
+            if (result.rowCount > 0) {
+                res.sendStatus(204);
+            } else {
+                res.sendStatus(403);
+            }
+        })
+        .catch((error) => {
+            console.log('error making query...', error);
+            res.sendStatus(500);
+        });
+});
 
 module.exports = router;

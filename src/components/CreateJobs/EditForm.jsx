@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const EditForm = (props) => {
+const EditForm = () => {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -61,15 +61,15 @@ const EditForm = (props) => {
         })
     }
 
-    function handleStatus(event) {
-        dispatch({
-            type: 'EDIT_ONCHANGE',
-            payload: {
-                property: 'status',
-                value: event.target.value,
-            }
-        })
-    }
+    // function handleStatus(event) {
+    //     dispatch({
+    //         type: 'EDIT_ONCHANGE',
+    //         payload: {
+    //             property: 'status',
+    //             value: event.target.value,
+    //         }
+    //     })
+    // }
 
 
     function handleSubmit(event) {
@@ -87,11 +87,9 @@ const EditForm = (props) => {
             })
     };
 
-   
     return (
         <>
-            <h2 className='edit-job'> Edit Job </h2>
-
+                <h2 className='edit-job'> Edit Job </h2>
             <p className='to=edit'> About to Edit {editJob.job_name}</p>
             {console.log('edit job', editJob)}
 
