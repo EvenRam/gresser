@@ -38,9 +38,10 @@ function* addJob(action) {
 }
 
 function* deleteJob(action){
+    console.log("action payload for deleteJob:", action.payload)
     try{
-        console.log("action.payload.id:",action.payload.jobs_id);
-        yield axios.delete(`/api/jobs/${action.payload.jobs_id}`);
+        console.log("action.payload.id:",action.payload.jobid);
+        yield axios.delete(`/api/jobs/${action.payload.jobid}`);
         yield put({type: "FETCH_JOB"})
     } catch(error){
         console.log("Error with the Job delete request", error)
