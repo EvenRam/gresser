@@ -11,6 +11,9 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const addRouter = require('./routes/addemployee.router')
 const jobsRouter = require('./routes/jobs.router')
+const jobsHistoryRouter = require('./routes/jobshistory.router');
+=======
+
 
 
 // Express Middleware
@@ -29,6 +32,10 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/addemployee', addRouter)
 app.use('/api/jobs', jobsRouter)
+app.use('/api/jobhistory', jobsHistoryRouter);
+=======
+
+
 
 
 // Listen Server & Port
