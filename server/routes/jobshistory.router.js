@@ -6,21 +6,21 @@ router.get('/', async (req, res) => {
   try {
     const filterDate = req.query.filterDate;
 
-    let jobsQuery = 'SELECT * FROM "Jobs"';
+    let jobsQuery = 'SELECT * FROM "jobs"';
     let queryParams = '';
 
     if (filterDate) {
-      queryParams = ` WHERE '${filterDate}' BETWEEN "StartDate" AND "EndDate"`;
+      queryParams = ` WHERE '${filterDate}' BETWEEN "start_date" AND "end_date"`;
     }
 
     jobsQuery += queryParams;
-    jobsQuery += ' ORDER BY "JobID"';
+    jobsQuery += ' ORDER BY "job_id"';
 
     const jobsResult = await pool.query(jobsQuery);
     const jobs = jobsResult.rows;
 
     for (let job of jobs) {
-      const employeesQuery = `SELECT * FROM "user" WHERE "location" = '${job.Location}'`;
+      const employeesQuery = `SELECT * FROM "user" WHERE "location" = '${job.location}'`;
       const employeesResult = await pool.query(employeesQuery);
       job.employees = employeesResult.rows;
     }
