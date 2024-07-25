@@ -26,6 +26,7 @@ import JobHistory from '../JobHistory/JobHistory';
 
 import './App.css';
 
+
 function App() {
   const dispatch = useDispatch();
 
