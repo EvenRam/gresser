@@ -6,9 +6,9 @@ const JobHistory = () => {
   let [filterDate, setFilterDate] = useState('');
 
   useEffect(() => {
-    let url = '/api/jobs';
+    let url = '/api/jobhistory';
     if (filterDate) {
-      url = `/api/jobs?filterDate=${filterDate}`;
+      url = `/api/jobhistory?filterDate=${filterDate}`;
     }
 
     axios.get(url)
