@@ -8,29 +8,34 @@ CREATE TABLE "user" (
     "password" VARCHAR (1000) NOT NULL
 );
 
+
 CREATE TABLE "user" (
  	 
     "id" SERIAL PRIMARY KEY,
-    "first_name" text NOT NULL,
-    "last_name" text NOT NULL,
+    "first_name" VARCHAR (1000) NOT NULL,
+    "last_name" VARCHAR (1000) NOT NULL,
     "phone_number" bigint,
-    "location" text,
-    "union_affiliation" text,
+    "location" VARCHAR (2000),
+    "union_affiliation" VARCHAR (1000),
     "employee_number" bigint, -- assuming Employee_Number is a numeric field
-    "email" text NOT NULL,
-    "password" text NOT NULL,
+     "username" VARCHAR (80) UNIQUE NOT NULL,
+    "password" VARCHAR (1000) NOT NULL,
     "roleId" bigint,
     "active" boolean
     
 );
 
-CREATE TABLE IF NOT EXISTS "Jobs" (
-	"JobID" bigint GENERATED ALWAYS AS IDENTITY NOT NULL UNIQUE,
-	"JobName" text NOT NULL,
-	"Location" text NOT NULL,
-	"StartDate" date NOT NULL,
-	"EndDate" date NOT NULL,
-	PRIMARY KEY ("JobID")
+
+
+
+CREATE TABLE "jobs" (
+	"job_id" SERIAL PRIMARY KEY,
+	"job_number" INT, 
+	"job_name" VARCHAR (1000),
+	"location" VARCHAR (1000),
+	"start_date" date,
+	"end_date" date,
+	"status" boolean
 );
 
 CREATE TABLE "add_employee" (

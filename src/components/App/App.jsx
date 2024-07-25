@@ -21,6 +21,8 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddEmployee from '../AddEmployee/AddEmployee';
 import EditEmployee from '../AddEmployee/EditAddEmployee';
+import CreateJobs from '../CreateJobs/CreateJobs';
+import EditForm from '../CreateJobs/EditForm';
 
 import './App.css';
 
@@ -111,7 +113,14 @@ function App() {
               <LandingPage />
             }
           </Route>
+          <Route
+            exact
+            path="/jobs"
+          >
+            <CreateJobs />
+          </Route>
 
+          <Route exact path="/edit" component={EditForm} />
           {/* If none of the other routes matched, we will show a 404. */}
 
           <Route exact path="/addemployee">
