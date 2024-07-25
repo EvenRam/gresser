@@ -23,8 +23,14 @@ import AddEmployee from '../AddEmployee/AddEmployee';
 import EditEmployee from '../AddEmployee/EditAddEmployee';
 import CreateJobs from '../CreateJobs/CreateJobs';
 import EditForm from '../CreateJobs/EditForm';
+import JobHistory from '../JobHistory/JobHistory';
+
+=======
+
+
 
 import './App.css';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -130,6 +136,13 @@ function App() {
           <ProtectedRoute exact path="/editemployee">
             <EditEmployee />
           </ProtectedRoute>
+          <Route exact path="/jobhistory">
+            <JobHistory /> 
+          </Route>
+
+
+
+
           <Route>
             <h1>404</h1>
           </Route>
