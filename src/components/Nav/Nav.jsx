@@ -37,6 +37,11 @@ function Nav() {
               Employees
             </Link>
 
+          <Link className='navLink' to="/jobhistory">
+            Job History
+          </Link>
+
+
             <LogOutButton className="navLink" />
           </>
         )}

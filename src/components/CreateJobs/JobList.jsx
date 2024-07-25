@@ -16,7 +16,7 @@ return(
     <>
     <div>
 
-        <h2 className="table-title"> Job List:</h2>
+        {/* <h2 className="table-title"> Job List:</h2> */}
 
         <table className="job-table">
 

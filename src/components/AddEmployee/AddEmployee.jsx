@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import "./AddEmployee.css"
 
 const AddEmployee = () => {
     const dispatch = useDispatch();
@@ -56,6 +57,8 @@ const AddEmployee = () => {
 
     return (
         <>
+<h2 className='employee-title'>Add Employee</h2>
+
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -115,10 +118,10 @@ const AddEmployee = () => {
                     value={address}
                     onChange={(event) => setAddress(event.target.value)}
                 />
-                <button type="submit">Add Employee</button>
+                <button className="employee-button" type="submit">Add Employee</button>
             </form>
 
-            <table>
+            <table className= "employee-table">
                 <thead>
                     <tr>
                         <th>Last Name</th>
@@ -143,7 +146,7 @@ const AddEmployee = () => {
                             <td>{emp.phone_number}</td>
                             <td>{emp.email}</td>
                             <td>{emp.address}</td>
-                            <td><button onClick={() => handleEditClick(emp)}>Edit</button></td>
+                            <td><button  onClick={() => handleEditClick(emp)}>Edit</button></td>
                         </tr>
                     ))}
                 </tbody>

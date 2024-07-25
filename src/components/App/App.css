@@ -94,7 +94,7 @@ Alert
 /* --------------------------------------------------------------------------------
 Form Treatment
 -------------------------------------------------------------------------------- */
-
+/* 
 .formPanel {
   box-sizing: border-box;
   width: 400px;
@@ -109,4 +109,30 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+} */
+
+/* 
+JOb History
+*/
+
+.jobhistory_title{
+text-align: center;
+margin-bottom: 55px;
+font-size:x-large;
+
 }
+
+.history-table,.history-tbody {
+    margin-top: 55px;
+    border: 3px solid rgb(207, 203, 203);
+      border-collapse: collapse;
+      padding-left: 55px;
+      padding-right: 55px;
+      margin-left: 320px;
+      margin-right: 50px;
+
+  }
+
+  .date{
+    text-align: center;
+  }

@@ -47,7 +47,7 @@ const CreateJobs = () => {
 
     return (
         <>
-            <h2 className='jobs-title'>Adding Jobs:</h2>
+            <h2 className='jobs-title'>Add Job</h2>
 
             <form className='jobs-form' onSubmit={handleSubmit}>
 
@@ -81,10 +81,10 @@ const CreateJobs = () => {
                         value={location}
                         onChange={(event) => setLocation(event.target.value)}
                     />
-                </div>
+                {/* </div> */}
 
 
-                <div className='startdate'>
+                {/* <div className='startdate'> */}
 
                     <label className='date-start'
                         htmlFor='date-start'> Start Date: </label>
@@ -109,18 +109,8 @@ const CreateJobs = () => {
                     {/* </div> */}
 
 
-                    {/* <div className='status'> */}
 
-                    {/* <label className='job-status'
-                        htmlFor='status'> Status: </label>
-                    <input
-                        type='text'
-                        id='status'
-                        value={status}
-                        onChange={(event) => setStatus(event.target.value)}
-                    /> */}
-
-                    <button onClick={handleSubmit}>Submit</button>
+                    <button className='job-button' onClick={handleSubmit}>Submit</button>
                 </div>
             </form>
 
