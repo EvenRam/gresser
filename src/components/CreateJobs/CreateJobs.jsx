@@ -16,7 +16,7 @@ const CreateJobs = () => {
     const [location, setLocation] = useState('')
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
-    // const [status, setStatus] = useState('true')
+    const [status, setStatus] = useState('true')
 
 
     const handleSubmit = (event) => {
@@ -30,10 +30,16 @@ const CreateJobs = () => {
                 location: location,
                 start_date: startDate,
                 end_date: endDate,
-                // status: status
+                status: status
             }
 
         })
+
+        setJobNumber("");
+        setName("");
+        setLocation("");
+        setStartDate("");
+        setEndDate("");
 
     }
 

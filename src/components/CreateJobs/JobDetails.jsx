@@ -36,7 +36,6 @@ const JobDetails = (props) => {
         setStatus(!status)
     }
 
-    console.log("status", props.status)
     return (
         <>
             <tr>

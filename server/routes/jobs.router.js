@@ -39,7 +39,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 
 
     
-    const jobs= [ jobInfo.job_number, jobInfo.job_name, jobInfo.location,jobInfo.start_date , jobInfo.end_date_date , jobInfo.status ]
+    const jobs= [ jobInfo.job_number, jobInfo.job_name, jobInfo.location,jobInfo.start_date , jobInfo.end_date, jobInfo.status ]
 
     const queryText = `
         INSERT INTO "jobs" ("job_number", "job_name", "location", "start_date", "end_date", "status")

@@ -6,7 +6,6 @@ import JobDetails from "./JobDetails";
 function JobList(props){
 
 const jobs = useSelector(store => store.jobReducer)
-console.log("jobs", props.job)
 const dispatch = useDispatch();
 
 useEffect(()=>{
