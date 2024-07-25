@@ -2,39 +2,43 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const JobsList = () => {
-  const [jobs, setJobs] = useState([]);
-  const [filterDate, setFilterDate] = useState('');
+  let [jobs, setJobs] = useState([]);
+  let [filterDate, setFilterDate] = useState('');
 
   useEffect(() => {
-    async function fetchJobs() {
-      try {
-        const url = getJobsUrl(filterDate);
-        const response = await axios.get(url);
-        console.log('Jobs API Response:', response.data);  
-        setJobs(response.data);
-      } catch (error) {
-        console.error('Error fetching jobs:', error);
-      }
+    let url = '/api/jobs';
+    if (filterDate) {
+      url = `/api/jobs?filterDate=${filterDate}`;
     }
 
-    fetchJobs();
+    axios.get(url)
+      .then(response => {
+        setJobs(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching jobs:', error);
+      });
   }, [filterDate]);
 
-  function getJobsUrl(filterDate) {
-    if (filterDate) {
-      return `/api/jobs?filterDate=${filterDate}`;
+  let formatDate = (dateString) => {
+    return new Date(dateString).toLocaleDateString();
+  };
+
+  let renderEmployees = (employees) => {
+    if (employees && employees.length > 0) {
+      return (
+        <ul>
+          {employees.map((employee) => (
+            <li key={employee.id}>
+              {employee.first_name} {employee.last_name}
+            </li>
+          ))}
+        </ul>
+      );
+    } else {
+      return <span>No employees assigned</span>;
     }
-    return '/api/jobs';
-  }
-
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleDateString();
-  }
-
-  function handleDateChange(event) {
-    setFilterDate(event.target.value);
-  }
+  };
 
   return (
     <div>
@@ -42,7 +46,11 @@ const JobsList = () => {
       <div>
         <label>
           Date:
-          <input type="date" value={filterDate} onChange={handleDateChange} />
+          <input 
+            type="date"
+            value={filterDate}
+            onChange={(e) => setFilterDate(e.target.value)}
+          />
         </label>
       </div>
       <table>
@@ -56,36 +64,20 @@ const JobsList = () => {
           </tr>
         </thead>
         <tbody>
-          {jobs.length > 0 ? (
-            jobs.map(function (job) {
-              return (
-                <tr key={job.JobID}>
-                  <td>{job.JobName}</td>
-                  <td>{job.Location}</td>
-                  <td>{formatDate(job.StartDate)}</td>
-                  <td>{formatDate(job.EndDate)}</td>
-                  <td>
-                    {job.employees && job.employees.length > 0 ? (
-                      <ul>
-                        {job.employees.map(function (employee) {
-                          return (
-                            <li key={employee.id}>
-                              {employee.first_name} {employee.last_name}
-                            </li>
-                          );
-                        })}
-                      </ul>
-                    ) : (
-                      <span>No employees assigned</span>
-                    )}
-                  </td>
-                </tr>
-              );
-            })
-          ) : (
+          {jobs.length === 0 ? (
             <tr>
-              <td colSpan="5">No jobs found</td>
+              <td colSpan="5">No jobs occured on this day</td>
             </tr>
+          ) : (
+            jobs.map((job) => (
+              <tr key={job.JobID}>
+                <td>{job.JobName}</td>
+                <td>{job.Location}</td>
+                <td>{formatDate(job.StartDate)}</td>
+                <td>{formatDate(job.EndDate)}</td>
+                <td>{renderEmployees(job.employees)}</td>
+              </tr>
+            ))
           )}
         </tbody>
       </table>

@@ -4,24 +4,29 @@ const pool = require('../modules/pool');
 
 router.get('/', async (req, res) => {
   try {
-    const { filterDate } = req.query;
-    let queryParams = [];
-    let jobQuery = `
-      SELECT j.*
-      FROM "Jobs" j
-    `;
+    const filterDate = req.query.filterDate;
+
+    let jobsQuery = 'SELECT * FROM "Jobs"';
+    let queryParams = '';
 
     if (filterDate) {
-      jobQuery += ` WHERE $1 BETWEEN j."StartDate" AND j."EndDate"`;
-      queryParams.push(filterDate);
+      queryParams = ` WHERE '${filterDate}' BETWEEN "StartDate" AND "EndDate"`;
     }
 
-    jobQuery += ` ORDER BY j."JobID"`;
+    jobsQuery += queryParams;
+    jobsQuery += ' ORDER BY "JobID"';
 
-    const result = await pool.query(jobQuery, queryParams);
+    const jobsResult = await pool.query(jobsQuery);
+    const jobs = jobsResult.rows;
 
-    console.log('Job Query Result:', result.rows);  
-    res.json(result.rows);
+    for (let job of jobs) {
+      const employeesQuery = `SELECT * FROM "user" WHERE "location" = '${job.Location}'`;
+      const employeesResult = await pool.query(employeesQuery);
+      job.employees = employeesResult.rows;
+    }
+
+    res.json(jobs);
+
   } catch (error) {
     console.error('Error fetching jobs:', error);
     res.status(500).json({ error: 'Internal server error' });
