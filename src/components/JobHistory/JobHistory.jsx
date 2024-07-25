@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const JobHistory = () => {
-  let [jobs, setJobs] = useState([]);
-  let [filterDate, setFilterDate] = useState('');
+  const [jobs, setJobs] = useState([]);
+  const [filterDate, setFilterDate] = useState('');
 
   useEffect(() => {
     let url = '/api/jobhistory';
@@ -20,11 +20,11 @@ const JobHistory = () => {
       });
   }, [filterDate]);
 
-  let formatDate = (dateString) => {
+  const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString();
   };
 
-  let renderEmployees = (employees) => {
+  const renderEmployees = (employees) => {
     if (employees && employees.length > 0) {
       return (
         <ul>
@@ -56,25 +56,29 @@ const JobHistory = () => {
       <table>
         <thead>
           <tr>
+            <th>Job Number</th>
             <th>Job Name</th>
             <th>Location</th>
             <th>Start Date</th>
             <th>End Date</th>
+            <th>Status</th>
             <th>Employees</th>
           </tr>
         </thead>
         <tbody>
           {jobs.length === 0 ? (
             <tr>
-              <td colSpan="5">No jobs occured on this day</td>
+              <td colSpan="7">No jobs occurred on this day</td>
             </tr>
           ) : (
             jobs.map((job) => (
-              <tr key={job.JobID}>
-                <td>{job.JobName}</td>
-                <td>{job.Location}</td>
-                <td>{formatDate(job.StartDate)}</td>
-                <td>{formatDate(job.EndDate)}</td>
+              <tr key={job.job_id}>
+                <td>{job.job_number}</td>
+                <td>{job.job_name}</td>
+                <td>{job.location}</td>
+                <td>{formatDate(job.start_date)}</td>
+                <td>{formatDate(job.end_date)}</td>
+                <td>{job.status ? 'Active' : 'Inactive'}</td>
                 <td>{renderEmployees(job.employees)}</td>
               </tr>
             ))
