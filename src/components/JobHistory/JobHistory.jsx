@@ -42,8 +42,8 @@ const JobHistory = () => {
 
   return (
     <div>
-      <h1>Job List</h1>
-      <div>
+      <h1 className ="jobhistory_title" >Job History</h1>
+      <div className='date'>
         <label>
           Date:
           <input 
@@ -53,7 +53,7 @@ const JobHistory = () => {
           />
         </label>
       </div>
-      <table>
+      <table className='history-table'>
         <thead>
           <tr>
             <th>Job Number</th>
@@ -65,7 +65,7 @@ const JobHistory = () => {
             <th>Employees</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className='history-tbody'>
           {jobs.length === 0 ? (
             <tr>
               <td colSpan="7">No jobs occurred on this day</td>

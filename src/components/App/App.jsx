@@ -135,6 +135,7 @@ function App() {
 
           <ProtectedRoute exact path="/editemployee">
             <EditEmployee />
+            
           </ProtectedRoute>
           <Route exact path="/jobhistory">
             <JobHistory /> 
