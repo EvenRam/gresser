@@ -123,7 +123,7 @@ function App() {
           <ProtectedRoute exact path="/editemployee">
             <EditEmployee />
           </ProtectedRoute>
-          <Route exact path="/jobs">
+          <Route exact path="/jobhistory">
             <JobsList /> 
           </Route>
 
