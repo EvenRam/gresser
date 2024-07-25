@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const JobsList = () => {
+const JobHistory = () => {
   let [jobs, setJobs] = useState([]);
   let [filterDate, setFilterDate] = useState('');
 
@@ -85,4 +85,4 @@ const JobsList = () => {
   );
 };
 
-export default JobsList;
+export default JobHistory;

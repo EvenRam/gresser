@@ -21,7 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddEmployee from '../AddEmployee/AddEmployee';
 import EditEmployee from '../AddEmployee/EditAddEmployee';
-import JobsList from '../JobsList/JobsList';
+import JobHistory from '../JobHistory/JobHistory';
 
 
 import './App.css';
@@ -124,7 +124,7 @@ function App() {
             <EditEmployee />
           </ProtectedRoute>
           <Route exact path="/jobhistory">
-            <JobsList /> 
+            <JobHistory /> 
           </Route>
 
 
