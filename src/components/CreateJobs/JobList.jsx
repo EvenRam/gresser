@@ -8,6 +8,7 @@ function JobList(props){
 const jobs = useSelector(store => store.jobReducer)
 const dispatch = useDispatch();
 
+// Dispatch action to get jobs
 useEffect(()=>{
     dispatch({ type: "FETCH_JOB"})
 }, []);
@@ -15,9 +16,6 @@ useEffect(()=>{
 return(
     <>
     <div>
-
-        {/* <h2 className="table-title"> Job List:</h2> */}
-
         <table className="job-table">
 
             <thead>
@@ -33,6 +31,7 @@ return(
                 </tr>
             </thead>
             <tbody>
+               {/** if the condition is true render you have no jobs otherwise render the jobs */}
             {!jobs || jobs.length === 0 || !Array.isArray(jobs) ? (
               <tr>
                 <td colSpan="7">YOU HAVE NO JOBS</td>

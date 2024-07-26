@@ -5,12 +5,13 @@ import JobList from './JobList';
 import './CreateJobs.css'
 
 const CreateJobs = () => {
-
+// hook to dispatch actions
     const dispatch = useDispatch();
     const history = useHistory();
 
     const jobs = useSelector(store => store.jobReducer)
 
+    // state variables defines for input fields
     const [jobNumber, setJobNumber] = useState('')
     const [name, setName] = useState('')
     const [location, setLocation] = useState('')
@@ -18,10 +19,11 @@ const CreateJobs = () => {
     const [endDate, setEndDate] = useState('')
     const [status, setStatus] = useState('true')
 
-
+// Handle form submission 
     const handleSubmit = (event) => {
+        // Prevent default form submission
         event.preventDefault();
-
+        // Dispatch action to add job
         dispatch({
             type: 'ADD_JOB',
             payload: {
@@ -34,7 +36,7 @@ const CreateJobs = () => {
             }
 
         })
-
+        // clear form fields
         setJobNumber("");
         setName("");
         setLocation("");
@@ -59,9 +61,7 @@ const CreateJobs = () => {
                         value={jobNumber}
                         onChange={(event) => setJobNumber(event.target.value)}
                     />
-                    {/* </div> */}
-
-                    {/* <div className='name'> */}
+                  
                     <label className='job-name'
                         htmlFor='job-name'> Job Name: </label>
                     <input
@@ -70,9 +70,7 @@ const CreateJobs = () => {
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     />
-                    {/* </div> */}
-
-                    {/* <div className='location'> */}
+                
                     <label className='job-location'
                         htmlFor='job-location'> Location:</label>
                     <input
@@ -81,10 +79,7 @@ const CreateJobs = () => {
                         value={location}
                         onChange={(event) => setLocation(event.target.value)}
                     />
-                {/* </div> */}
-
-
-                {/* <div className='startdate'> */}
+               
 
                     <label className='date-start'
                         htmlFor='date-start'> Start Date: </label>
@@ -94,9 +89,7 @@ const CreateJobs = () => {
                         value={startDate}
                         onChange={(event) => setStartDate(event.target.value)}
                     />
-                    {/* </div> */}
-
-                    {/* <div className='enddate'> */}
+                
 
                     <label className='date-end'
                         htmlFor='date-end'> End Date: </label>
@@ -106,9 +99,7 @@ const CreateJobs = () => {
                         value={endDate}
                         onChange={(event) => setEndDate(event.target.value)}
                     />
-                    {/* </div> */}
-
-
+            
 
                     <button className='job-button' onClick={handleSubmit}>Submit</button>
                 </div>
