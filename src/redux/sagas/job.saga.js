@@ -5,6 +5,7 @@ function* jobSaga() {
     // handles the action types
     yield takeLatest ('FETCH_JOB', fetchJob);
     yield takeLatest ('ADD_JOB', addJob);
+    yield takeLatest('TOGGLE_JOB_STATUS', toggleJobStatus)
     yield takeLatest("DELETE_JOB",deleteJob);
   }
   
@@ -33,6 +34,21 @@ function* addJob(action) {
         yield put({ type: 'FETCH_JOB'})
     } catch (error) {
         console.log('error with add job post request', error);
+    }
+}
+
+function* toggleJobStatus(action){
+    try {
+        console.log("action paylod job status",action.payload)
+        const {status} = action.payload;
+        console.log("action paylod job status",action.payload)
+
+        yield axios.put(`/api/jobs/${action.payload.jobid}`, {status});
+        yield put ({
+            type:'FETCH_JOB'
+        });
+    } catch(error){
+        console.log('error toggliing job status,error',error);
     }
 }
 // Delete a job from the server and update the redux store

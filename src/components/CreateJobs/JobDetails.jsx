@@ -7,8 +7,13 @@ import React, { useState } from 'react';
 const JobDetails = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
+
+    const jobs = useSelector(store => store.editJobReducer)
+    console.log("edit job reducer", jobs)
+
     // define state for job status toogle 
     const [status, setStatus] = useState('')
+
     // dispatch action to update current state in redux
     const handleEdit = () => {
         dispatch({
@@ -18,6 +23,7 @@ const JobDetails = (props) => {
         // nav to the edit page
         history.push('/edit');
     }
+
     // Dispatch action to delete job with job id
     const handleDelete = () => {
         console.log("Delete Clicked for job id:", props.job.job_id);
@@ -26,10 +32,22 @@ const JobDetails = (props) => {
             payload: { jobid: props.job.job_id }
         });
     };
-// toggles the jb between active and inactive
-    const toggleStatus = () => {
-        setStatus(!status)
-    }
+
+// toggles the job between active and inactive
+const toggleStatus = () => {
+    const newStatus = jobs.status === 'Active' ? 'Inactive' : 'Active';
+console.log("new status", newStatus)
+    dispatch({
+    type: 'TOGGLE_JOB_STATUS',
+    payload: { 
+        jobid: props.job.job_id,
+        status: newStatus,
+     }
+
+});
+
+};
+
     return (
         <>
             <tr>
@@ -39,7 +57,8 @@ const JobDetails = (props) => {
                 <td> {new Date(props.job.start_date).toLocaleDateString()}</td>
                 <td> {new Date(props.job.end_date).toLocaleDateString()} </td>
                 <td>
-                    <button className="job-toggle" onClick={toggleStatus}>  {status ? 'Active' : 'Inactive'}
+                <button className="job-toggle" onClick={toggleStatus}> 
+                    {props.job.status === 'Active' ? 'Active' : 'Inactive'}
                     </button>
                 </td>
                 <td> <button className="job-edit" onClick={() => handleEdit(props.job.id)}>

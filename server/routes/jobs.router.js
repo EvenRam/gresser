@@ -52,6 +52,32 @@ router.post('/', rejectUnauthenticated, (req, res) => {
             res.sendStatus(500);
         });
 });
+
+router.put('/:job_id', rejectUnauthenticated,(req,res)=>{
+    const jobId= req.params.job_id;
+    const { status } = req.body;
+
+    const queryText= `
+    UPDATE "jobs" 
+    SET "status" = $1
+    WHERE "job_id" =$2;
+    
+    `;
+    console.log("values", jobId)
+    console.log("values", status)
+
+
+    pool.query(queryText,[status,jobId])
+        .then((result)=> {
+            res.sendStatus(201);
+        })
+        .catch((error) =>{
+            console.log('Error updating job status:',error);
+            res.sendStatus(500);
+        })
+
+})
+
 // Route to update job
 router.put('/:job_id', (req, res) => {
 //get job id from URl params
