@@ -7,10 +7,12 @@ import { useHistory } from 'react-router-dom';
 const EditForm = () => {
 
     const dispatch = useDispatch();
+    // Hook to nav to different routes
     const history = useHistory();
-
+    //Get job to edit from the redux sotre
     const editJob = useSelector((store) => store.editJobReducer)
-
+    // handle input changes
+    // dispatch action to update job
     function handleChange(event, property) {
         dispatch({
             type: 'EDIT_ONCHANGE',
@@ -21,20 +23,27 @@ const EditForm = () => {
         })
     }
 
+    //handle form submission
     function handleSubmit(event) {
         event.preventDefault();
         console.log("edit job", editJob.job_id);
+        // Send PUT request to update job
         axios.put(`/api/jobs/${editJob.job_id}`, editJob)
             .then(response => {
+                // clear edit job state
                 dispatch({ type: "EDIT_CLEAR" });
+                // nav back to home page
                 history.push('/jobs');
             })
             .catch(error => {
                 console.log('error on Put', error);
             })
     };
+
     return (
         <>
+            {/* Render form with inputs for editiing jobs */}
+
             <h2 className='edit-job'> Edit Job </h2>
             <p className='to=edit'> About to Edit {editJob.job_name}</p>
             {console.log('edit job', editJob)}
