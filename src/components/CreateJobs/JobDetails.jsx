@@ -8,11 +8,11 @@ const JobDetails = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const jobs = useSelector(store => store.editJobReducer)
-    console.log("edit job reducer", jobs)
-
     // define state for job status toogle 
-    const [status, setStatus] = useState('')
+    // const [status, setStatus] = useState('')
+
+    const jobs = useSelector(store => store.jobReducer)
+
 
     // dispatch action to update current state in redux
     const handleEdit = () => {
@@ -33,21 +33,22 @@ const JobDetails = (props) => {
         });
     };
 
-// toggles the job between active and inactive
+// toggles the jb between active and inactive
 const toggleStatus = () => {
-    const newStatus = jobs.status === 'Active' ? 'Inactive' : 'Active';
-console.log("new status", newStatus)
+    const newStatus = props.job.status === 'Active' ? 'Inactive' : 'Active';
+    console.log("New status:", newStatus);
     dispatch({
-    type: 'TOGGLE_JOB_STATUS',
-    payload: { 
-        jobid: props.job.job_id,
-        status: newStatus,
-     }
-
-});
-
+        type: 'TOGGLE_JOB_STATUS',
+        payload: { 
+            job_id: props.job.job_id,
+            status: newStatus
+        }
+    });
 };
 
+
+
+    
     return (
         <>
             <tr>

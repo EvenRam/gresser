@@ -1,13 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* jobSaga() {
-    // handles the action types
-    yield takeLatest ('FETCH_JOB', fetchJob);
-    yield takeLatest ('ADD_JOB', addJob);
-    yield takeLatest('TOGGLE_JOB_STATUS', toggleJobStatus)
-    yield takeLatest("DELETE_JOB",deleteJob);
-  }
   
   // Fetch jobs from the server and update the redux store 
 function* fetchJob() {
@@ -43,7 +36,7 @@ function* toggleJobStatus(action){
         const {status} = action.payload;
         console.log("action paylod job status",action.payload)
 
-        yield axios.put(`/api/jobs/${action.payload.jobid}`, {status});
+        yield axios.put(`/api/jobs/${action.payload.job_id}`, {status});
         yield put ({
             type:'FETCH_JOB'
         });
@@ -51,6 +44,7 @@ function* toggleJobStatus(action){
         console.log('error toggliing job status,error',error);
     }
 }
+
 // Delete a job from the server and update the redux store
 function* deleteJob(action){
     try{
@@ -61,4 +55,13 @@ function* deleteJob(action){
         console.log("Error with the Job delete request", error)
     }
 }
+
+function* jobSaga() {
+    // handles the action types
+    yield takeLatest ('FETCH_JOB', fetchJob);
+    yield takeLatest ('ADD_JOB', addJob);
+    yield takeLatest('TOGGLE_JOB_STATUS', toggleJobStatus)
+    yield takeLatest("DELETE_JOB",deleteJob);
+  }
+
 export default jobSaga;

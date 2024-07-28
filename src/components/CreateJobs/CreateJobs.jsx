@@ -17,7 +17,7 @@ const CreateJobs = () => {
     const [location, setLocation] = useState('')
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
-    // const [status, setStatus] = useState('true')
+    const [status, setStatus] = useState('')
 
 // Handle form submission 
     const handleSubmit = (event) => {
@@ -32,7 +32,7 @@ const CreateJobs = () => {
                 location: location,
                 start_date: startDate,
                 end_date: endDate,
-                // status: status
+                status: status
             }
 
         })
