@@ -35,8 +35,8 @@ CREATE TABLE "jobs" (
 	"location" VARCHAR (1000),
 	"start_date" date,
 	"end_date" date,
-	"status" boolean
-);
+    "status" VARCHAR(20) DEFAULT 'active'
+	);
 
 CREATE TABLE "add_employee" (
 	"id" SERIAL PRIMARY KEY, 
@@ -49,6 +49,14 @@ CREATE TABLE "add_employee" (
 	"email" VARCHAR(80),
 	"address" VARCHAR(120)
 );
+
+CREATE TABLE rain_days (
+  id SERIAL PRIMARY KEY,
+  job_id INTEGER REFERENCES jobs(job_id),
+  date DATE NOT NULL,
+  UNIQUE(job_id, date)
+);
+
 
 INSERT INTO "add_employee" 
 ("first_name", "last_name", "employee_number", "union_id", "employee_status", "phone_number", "email", "address") 

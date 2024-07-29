@@ -6,6 +6,11 @@ const JobHistory = () => {
   const [filterDate, setFilterDate] = useState('');
 
   useEffect(() => {
+    fetchJobs();
+  }, [filterDate]);
+
+  //get job history using the data filter if provided.  
+  const fetchJobs = () => {
     let url = '/api/jobhistory';
     if (filterDate) {
       url = `/api/jobhistory?filterDate=${filterDate}`;
@@ -18,11 +23,14 @@ const JobHistory = () => {
       .catch(error => {
         console.error('Error fetching jobs:', error);
       });
-  }, [filterDate]);
+  };
 
+  //Truncates date
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString();
   };
+
+  //Maps employees if the array has at least one entry
 
   const renderEmployees = (employees) => {
     if (employees && employees.length > 0) {
@@ -40,9 +48,35 @@ const JobHistory = () => {
     }
   };
 
+  const renderRainDays = (rainDays) => {
+    if (rainDays && rainDays.length > 0) {
+      return (
+        <ul>
+          {rainDays.map((rainDay) => (
+            <li key={rainDay.date}>
+              {formatDate(rainDay.date)}
+            </li>
+          ))}
+        </ul>
+      );
+    } else {
+      return <span>No rain days</span>;
+    }
+  };
+
+  const rainCheckBox = (jobId) => {
+    axios.post('/api/jobhistory/rainday', { jobId, date: filterDate })
+      .then(() => {
+        fetchJobs();
+      })
+      .catch(error => {
+        console.error('Error changing rain day:', error);
+      });
+  };
+
   return (
     <div>
-      <h1 className ="jobhistory_title" >Job History</h1>
+      <h1 className="jobhistory_title">Job History</h1>
       <div className='date'>
         <label>
           Date:
@@ -63,12 +97,14 @@ const JobHistory = () => {
             <th>End Date</th>
             <th>Status</th>
             <th>Employees</th>
+            <th>Rain Days</th>
+            {filterDate && <th>Mark as Rain Day</th>}
           </tr>
         </thead>
         <tbody className='history-tbody'>
           {jobs.length === 0 ? (
             <tr>
-              <td colSpan="7">No jobs occurred on this day</td>
+              <td >No jobs occurred on this day</td>
             </tr>
           ) : (
             jobs.map((job) => (
@@ -80,6 +116,16 @@ const JobHistory = () => {
                 <td>{formatDate(job.end_date)}</td>
                 <td>{job.status ? 'Active' : 'Inactive'}</td>
                 <td>{renderEmployees(job.employees)}</td>
+                <td>{renderRainDays(job.rain_days)}</td>
+                {filterDate && (
+                  <td>
+                    <input
+                      type="checkbox"
+                      checked={job.rain_days.some(rd => formatDate(rd.date) === formatDate(filterDate))}
+                      onChange={() => rainCheckBox(job.job_id)}
+                    />
+                  </td>
+                )}
               </tr>
             ))
           )}
