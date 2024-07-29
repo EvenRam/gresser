@@ -7,6 +7,8 @@ import {
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -24,7 +26,7 @@ import EditEmployee from '../AddEmployee/EditAddEmployee';
 import CreateJobs from '../CreateJobs/CreateJobs';
 import EditForm from '../CreateJobs/EditForm';
 import JobHistory from '../JobHistory/JobHistory';
-
+import Scheduling from '../Scheduling/Scheduling';
 
 
 
@@ -141,6 +143,11 @@ function App() {
             <JobHistory /> 
           </Route>
 
+          <Route exact path="/scheduling">
+            <DndProvider backend={HTML5Backend}>
+              <Scheduling />
+            </DndProvider>
+          </Route>
 
 
 
