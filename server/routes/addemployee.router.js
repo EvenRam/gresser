@@ -3,22 +3,30 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-router.get('/', rejectUnauthenticated, (req, res) => {
-    const sqlText = `
-        SELECT * FROM "add_employee" 
-        ORDER BY "last_name" ASC, "first_name" ASC;
-    `;
-    
-    pool.query(sqlText)
-        .then((result) => {
-            res.send(result.rows);
-        })
-        .catch((error) => {
-            console.log(`Error making database query ${sqlText}`, error);
-            res.sendStatus(500);
-        });
-});
 
+router.get('/', (req, res) => {
+    if (req.isAuthenticated()) {
+        console.log('User is authenticated?:', req.isAuthenticated());
+        console.log("Current user is: ", req.user.username);
+        
+        const sqlText = `SELECT * FROM "add_employee" 
+        ORDER BY "last_name" ASC, "first_name" ASC;
+
+`;
+        pool
+            .query(sqlText)
+            .then((result) => {
+                console.log(`GET from database`, result);
+                res.send(result.rows);
+            })
+            .catch((error) => {
+                console.log(`Error making database query ${sqlText}`, error);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(401);
+    }
+});
 router.get('/employeecard', (req, res) => {
     if (req.isAuthenticated()) {
         console.log('User is authenticated?:', req.isAuthenticated());
@@ -47,6 +55,7 @@ ORDER BY "last_name" ASC, "first_name" ASC;
 });
 
 
+
 router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('User is authenticated?:', req.isAuthenticated());
     console.log('Current user is:', req.user.username);
@@ -71,7 +80,6 @@ router.post('/', rejectUnauthenticated, (req, res) => {
             res.sendStatus(500);
         });
 });
-
 
 router.put('/:id', async (req, res) => {
     const employeeId = req.params.id;
