@@ -20,7 +20,9 @@ const Scheduling = () => {
   const moveEmployee = (employeeId, targetProjectId) => {
     console.log('Move Employee', employeeId, 'to', targetProjectId);
     dispatch({ type: 'MOVE_EMPLOYEE', payload: { employeeId, targetProjectId } });
-  
+    dispatch({ type: 'FETCH_EMPLOYEE_CARD' });
+    dispatch({ type: 'FETCH_PROJECT' });
+    dispatch({ type: 'FETCH_PROJECTS_WITH_EMPLOYEES' }); 
   };
 
  
