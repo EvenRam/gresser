@@ -19,6 +19,34 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
+router.get('/employeecard', (req, res) => {
+    if (req.isAuthenticated()) {
+        console.log('User is authenticated?:', req.isAuthenticated());
+        console.log("Current user is: ", req.user.username);
+
+        const sqlText = `
+SELECT "id", "first_name", "last_name"
+FROM "add_employee"
+WHERE "project_id" IS NULL
+ORDER BY "last_name" ASC, "first_name" ASC;
+        `;
+
+        pool
+            .query(sqlText)
+            .then((result) => {
+                console.log(`GET from database`, result);
+                res.send(result.rows);
+            })
+            .catch((error) => {
+                console.log(`Error making database query ${sqlText}`, error);
+                res.sendStatus(500);
+            });
+    } else {
+        res.sendStatus(401);
+    }
+});
+
+
 router.post('/', rejectUnauthenticated, (req, res) => {
     const { first_name, last_name, employee_number, union_id, employee_status, phone_number, email, address } = req.body;
 
