@@ -53,7 +53,7 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     const queryText = `
         INSERT INTO "add_employee" (
             "first_name", "last_name", "employee_number", "union_id", "employee_status", "phone_number", "email", "address"
-        ) VALUES ($1, $2, $3, $4, $5::BOOLEAN, $6, $7, $8)
+        ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
         RETURNING "id"
     `;
     const values = [first_name, last_name, employee_number, union_id, employee_status, phone_number, email, address];
