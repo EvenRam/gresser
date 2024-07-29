@@ -35,7 +35,7 @@ router.get('/employeecard', (req, res) => {
         const sqlText = `
 SELECT "id", "first_name", "last_name"
 FROM "add_employee"
-WHERE "project_id" IS NULL
+WHERE "job_id" IS NULL
 ORDER BY "last_name" ASC, "first_name" ASC;
         `;
 
@@ -61,15 +61,15 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('Current user is:', req.user.username);
     console.log('Current request body is:', req.body);
 
-    const { first_name, last_name, employee_number, union_id, employee_status, phone_number, email, address, project_id } = req.body;
+    const { first_name, last_name, employee_number, union_id, employee_status, phone_number, email, address, job_id } = req.body;
 
     const queryText = `
         INSERT INTO "add_employee" (
-            "first_name", "last_name", "employee_number", "union_id", "employee_status", "phone_number", "email", "address", "project_id"
+            "first_name", "last_name", "employee_number", "union_id", "employee_status", "phone_number", "email", "address", "job_id"
         ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
         RETURNING "id"
     `;
-    const values = [first_name, last_name, employee_number, union_id, employee_status, phone_number, email, address, project_id];
+    const values = [first_name, last_name, employee_number, union_id, employee_status, phone_number, email, address, job_id];
 
     pool.query(queryText, values)
         .then((result) => {
@@ -92,7 +92,7 @@ router.put('/:id', async (req, res) => {
         phone_number,
         email,
         address,
-        project_id
+        job_id
     } = req.body;
 
     const query = `
@@ -106,7 +106,7 @@ router.put('/:id', async (req, res) => {
             "phone_number" = $6, 
             "email" = $7, 
             "address" = $8,
-            "project_id" = $9
+            "job_id" = $9
         WHERE "id" = $10;
     `;
 
@@ -119,7 +119,7 @@ router.put('/:id', async (req, res) => {
         phone_number,
         email,
         address,
-        project_id,
+        job_id,
         employeeId
     ];
 

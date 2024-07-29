@@ -63,6 +63,7 @@ function* fetchEmployeeInfo() {
       // console.log('Reducer received:', employeeId, targetProjectId);
       yield call(axios.post, '/api/moveEmployee', { employeeId, targetProjectId });
       yield put({ type: 'FETCH_PROJECTS_WITH_EMPLOYEES'});
+      yield put({ type: 'FETCH_EMPLOYEE_CARD' });
   
     } catch (error) {
       yield put({ type: 'MOVE_EMPLOYEE_FAILURE', error }); 

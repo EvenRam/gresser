@@ -3,17 +3,13 @@ import { useDrop } from 'react-dnd';
 import Employee from './Employee';
 import { useDispatch, useSelector } from 'react-redux';
 
-const ProjectBox = ({ id, employees, employee, moveEmployee, project_name }) => {
-  // console.log('Project Box Employees for ', project_name, " => ", employees);
-  // console.log('Project Box employee id', id)
-  console.log('Id in project box:', id)
-  console.log("Employees in ProjectBox component:", employees)
-  // console.log('Index:', employees[1].id)
+const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
+  console.log('Id in job box:', id)
+  console.log("Employees in JobBox component:", employees)
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'EMPLOYEE',
     drop: (item) => {
-
       console.log('Dropped item:', item);
       moveEmployee(item.id, id);
     },
@@ -21,7 +17,6 @@ const ProjectBox = ({ id, employees, employee, moveEmployee, project_name }) => 
       isOver: !!monitor.isOver(),
     }),
   }));
-  // console.log('Employees:', employees);
 
   return (
     <div
@@ -35,13 +30,12 @@ const ProjectBox = ({ id, employees, employee, moveEmployee, project_name }) => 
         backgroundColor: isOver ? 'white' : 'white',
       }}
     >
-      <h4>{project_name}</h4>
+      <h4>{job_name}</h4>
       {employees.length === 0 ? (
         <p>No employees assigned</p>
       ) : (
-        employees.map(employees => (
-          
-          <Employee key={employees.id} id={employees.id} name={`${employees.first_name} ${employees.last_name}`}  />
+        employees.map(employee => (
+          <Employee key={employee.id} id={employee.id} name={`${employee.first_name} ${employee.last_name}`} />
         ))
       )}
     </div>
