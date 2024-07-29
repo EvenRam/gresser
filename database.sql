@@ -35,8 +35,8 @@ CREATE TABLE "jobs" (
 	"location" VARCHAR (1000),
 	"start_date" date,
 	"end_date" date,
-	"status" boolean
-);
+    "status" VARCHAR(20) DEFAULT 'active'
+	);
 
 CREATE TABLE "add_employee" (
 	"id" SERIAL PRIMARY KEY, 
