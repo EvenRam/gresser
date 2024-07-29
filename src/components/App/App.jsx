@@ -6,6 +6,9 @@ import {
   Switch,
 } from 'react-router-dom';
 
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+
 import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
@@ -24,13 +27,9 @@ import EditEmployee from '../AddEmployee/EditAddEmployee';
 import CreateJobs from '../CreateJobs/CreateJobs';
 import EditForm from '../CreateJobs/EditForm';
 import JobHistory from '../JobHistory/JobHistory';
-
-
-
-
+import DragDrop from '../SaveDrag/SaveDrag';
 
 import './App.css';
-
 
 function App() {
   const dispatch = useDispatch();
@@ -46,88 +45,37 @@ function App() {
       <div>
         <Nav />
         <Switch>
-          {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
           <Redirect exact from="/" to="/home" />
 
-          {/* Visiting localhost:5173/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
+          <Route exact path="/about">
             <AboutPage />
           </Route>
 
-          {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:5173/user will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:5173/user */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user"
-          >
+          <ProtectedRoute exact path="/user">
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
+          <ProtectedRoute exact path="/info">
             <InfoPage />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
-            }
+          <Route exact path="/login">
+            {user.id ? <Redirect to="/user" /> : <LoginPage />}
           </Route>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the registration page
-              <RegisterPage />
-            }
+          <Route exact path="/registration">
+            {user.id ? <Redirect to="/user" /> : <RegisterPage />}
           </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to="/user" />
-              :
-              // Otherwise, show the Landing page
-              <LandingPage />
-            }
+          <Route exact path="/home">
+            {user.id ? <Redirect to="/user" /> : <LandingPage />}
           </Route>
-          <Route
-            exact
-            path="/jobs"
-          >
+
+          <Route exact path="/jobs">
             <CreateJobs />
           </Route>
 
           <Route exact path="/edit" component={EditForm} />
-          {/* If none of the other routes matched, we will show a 404. */}
 
           <Route exact path="/addemployee">
             <AddEmployee />
@@ -135,14 +83,17 @@ function App() {
 
           <ProtectedRoute exact path="/editemployee">
             <EditEmployee />
-            
           </ProtectedRoute>
+
           <Route exact path="/jobhistory">
             <JobHistory /> 
           </Route>
 
-
-
+          <Route exact path="/drag">
+            <DndProvider backend={HTML5Backend}>
+              <DragDrop />
+            </DndProvider>
+          </Route>
 
           <Route>
             <h1>404</h1>
