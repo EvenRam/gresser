@@ -7,10 +7,9 @@ import {
 } from 'react-router-dom';
 
 import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+
 
 import { useDispatch, useSelector } from 'react-redux';
-import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import Nav from '../Nav/Nav';
