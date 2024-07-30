@@ -76,23 +76,23 @@ function App() {
             {user.id ? <Redirect to="/user" /> : <LandingPage />}
           </Route>
 
-          <Route exact path="/jobs">
+          <ProtectedRoute exact path="/jobs">
             <CreateJobs />
-          </Route>
+          </ProtectedRoute>
 
-          <Route exact path="/edit" component={EditForm} />
+          <ProtectedRoute exact path="/edit" component={EditForm} />
 
-          <Route exact path="/addemployee">
+          <ProtectedRoute exact path="/addemployee">
             <AddEmployee />
-          </Route>
+          </ProtectedRoute>
 
           <ProtectedRoute exact path="/editemployee">
             <EditEmployee />
           </ProtectedRoute>
 
-          <Route exact path="/jobhistory">
+          <ProtectedRoute exact path="/jobhistory">
             <JobHistory /> 
-          </Route>
+          </ProtectedRoute>
 
 
           
@@ -105,11 +105,11 @@ function App() {
             </DndProvider>
           </Route>
 
-<Route exact path="/scheduling">
+<ProtectedRoute exact path="/scheduling">
             <DndProvider backend={HTML5Backend}>
               <Scheduling />
             </DndProvider>
-          </Route>
+          </ProtectedRoute>
           <Route>
             <h1>404</h1>
           </Route>

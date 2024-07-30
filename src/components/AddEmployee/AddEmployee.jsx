@@ -48,7 +48,7 @@ const AddEmployee = (props) => {
 
 
     const handleEditClick = (emp) => {
-      
+
         dispatch({ type: 'SET_EDIT_EMPLOYEE', payload: emp });
 
         // Push user to edit page
@@ -57,7 +57,7 @@ const AddEmployee = (props) => {
 
     return (
         <>
-<h2 className='employee-title'>Add Employee</h2>
+            <h2 className='employee-title'>Add Employee</h2>
 
             <form onSubmit={handleSubmit}>
                 <input
@@ -67,7 +67,7 @@ const AddEmployee = (props) => {
                     value={lastName}
                     onChange={(event) => setLastName(event.target.value)}
                 />
-                           <input
+                <input
                     type="text"
                     name="first_name"
                     placeholder="First Name"
@@ -88,7 +88,7 @@ const AddEmployee = (props) => {
                     value={unionId}
                     onChange={(event) => setUnionId(event.target.value)}
                 />
-                
+
                 <input
                     type="text"
                     name="phone_number"
@@ -113,7 +113,7 @@ const AddEmployee = (props) => {
                 <button className="employee-button" type="submit">Add Employee</button>
             </form>
 
-            <table className= "employee-table">
+            <table className="employee-table">
                 <thead>
                     <tr>
                         <th>Last Name</th>
@@ -136,12 +136,12 @@ const AddEmployee = (props) => {
                             <td>{emp.union_id}</td>
                             <td>
                                 <ToggleEmployee
-                                emp={emp}/>
+                                    emp={emp} />
                             </td>
                             <td>{emp.phone_number}</td>
                             <td>{emp.email}</td>
                             <td>{emp.address}</td>
-                            <td><button  onClick={() => handleEditClick(emp)}>Edit</button></td>
+                            <td><button onClick={() => handleEditClick(emp)}>Edit</button></td>
                         </tr>
                     ))}
                 </tbody>

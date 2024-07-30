@@ -12,9 +12,9 @@ function Nav() {
     <div className="nav">
       <Link to="/home">
         {/* <h2 className="nav-title">GRESSER</h2> */}
-        <img src='/documentation/images/Gresser.png'/>
+        <img className='only-logo' src='/documentation/images/onlylogo.png' alt='Only Logo'/>
+        <img className='gresser' src='/documentation/images/Gresser.png' alt='Gresser'/>
 
-        
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
@@ -29,7 +29,7 @@ function Nav() {
 
         {user.id && (
           <>
-            <Link className="navLink" to="/user">
+            <Link className="navLink" to="/scheduling">
               Home
             </Link>
 

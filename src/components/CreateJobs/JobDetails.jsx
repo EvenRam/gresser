@@ -43,6 +43,9 @@ const toggleStatus = () => {
     });
 };
 
+// created variable for CSS class names for the toggle button
+//job-toggle.active/inaction are the class names 
+const buttonClass = `job-toggle ${props.job.status === 'Active' ? 'active' : 'inactive'}`;
 
 
     
@@ -55,7 +58,7 @@ const toggleStatus = () => {
                 <td> {new Date(props.job.start_date).toLocaleDateString()}</td>
                 <td> {new Date(props.job.end_date).toLocaleDateString()} </td>
                 <td>
-                <button className="job-toggle" onClick={toggleStatus}> 
+                <button className={buttonClass} onClick={toggleStatus}> 
                     {props.job.status === 'Active' ? 'Active' : 'Inactive'}
                     </button>
                 </td>

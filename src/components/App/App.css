@@ -7,6 +7,7 @@ body,
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
+  background-color: #ebeded;
 }
 
 img {
@@ -29,10 +30,10 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #0e5c5d;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #396a54;
   color: #f8f8f8;
   font-size: 1.1rem;
   outline: 0;
@@ -55,7 +56,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #396a54;
   text-decoration: none;
 }
 
@@ -72,8 +73,8 @@ Button
 
 .btn_asLink:hover {
   background-color: transparent;
-  border-color: #008183;
-  color: #008183;
+  border-color: #18422f;
+  color: #18422f;
 }
 
 /* --------------------------------------------------------------------------------
@@ -124,15 +125,16 @@ font-size:x-large;
 
 .history-table,.history-tbody {
     margin-top: 55px;
-    border: 3px solid rgb(207, 203, 203);
+    border: solid rgb(10, 8, 8);
       border-collapse: collapse;
       padding-left: 55px;
       padding-right: 55px;
-      margin-left: 160px;
-      margin-right: 50px;
+      margin-left: 60px;
+      margin-right: 60px;
 
   }
 
   .date{
     text-align: center;
   }
+

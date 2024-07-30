@@ -5,7 +5,7 @@
   align-items: center;
 
   margin: 0 0 30px;
-  background-color: #00acb0;
+  background-color: #0d1212;
 
   overflow: hidden;
   
@@ -15,22 +15,23 @@
   text-decoration: none;
 }
 
-.nav-title {
+/* .nav-title {
   font-size: 24px;
   font-weight: 700;
   color: #f2f2f2;
   padding-left: 10px;
   margin: 0;
-}
+} */
 
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #00acb0;
+  background-color: #0a0b0b;
   text-align: center;
-  padding: 24px 10px;
+  padding: 30px 30px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 20px;
+  font-weight: 900;
   
 
   /* these last two make the logout button in
@@ -41,15 +42,25 @@
 }
 
 .navLink:hover {
-  background-color: #008183;
+  background-color: #396a54;
   /* background-color: #349; */
 
 }
 
-/* body{
-  background-image: url('/documentation/images/onlylogo.png');
-  background-repeat: no-repeat;
-  background-size:cover;
-  backdrop-filter: blur(10px);
 
-} */
+
+img,.only-logo{
+  height: 125px;
+  width: 150px; 
+  margin-left: 55px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+
+}
+
+.gresser{
+  padding-left: 5px;
+  height: 75px;
+  width: 250px;
+  margin-bottom: 40px;
+}
