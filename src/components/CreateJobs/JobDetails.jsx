@@ -8,9 +8,6 @@ const JobDetails = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // define state for job status toogle 
-    // const [status, setStatus] = useState('')
-
     const jobs = useSelector(store => store.jobReducer)
 
 

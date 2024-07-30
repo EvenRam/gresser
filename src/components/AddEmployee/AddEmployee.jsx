@@ -2,16 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import "./AddEmployee.css"
+import ToggleEmployee from './ToggleEmployee';
 
-const AddEmployee = () => {
+const AddEmployee = (props) => {
     const dispatch = useDispatch();
     const employees = useSelector((state) => state.addEmployeeReducer);
+
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [employeeNumber, setEmployeeNumber] = useState('');
     const [unionId, setUnionId] = useState('');
-    const [employeeStatus, setEmployeeStatus] = useState(0);
+    // const [employeeStatus, setEmployeeStatus] = useState(true);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
@@ -28,7 +30,6 @@ const AddEmployee = () => {
             last_name: lastName,
             employee_number: employeeNumber,
             union_id: unionId,
-            employee_status: employeeStatus,
             phone_number: phoneNumber,
             email,
             address
@@ -40,7 +41,6 @@ const AddEmployee = () => {
         setLastName('');
         setEmployeeNumber('');
         setUnionId('');
-        setEmployeeStatus(0);
         setPhoneNumber('');
         setEmail('');
         setAddress('');
@@ -88,15 +88,7 @@ const AddEmployee = () => {
                     value={unionId}
                     onChange={(event) => setUnionId(event.target.value)}
                 />
-                <label>
-                    Employee Status Active
-                    <input
-                        type="checkbox"
-                        name="employee_status"
-                        checked={employeeStatus === 1}
-                        onChange={(event) => setEmployeeStatus(event.target.checked ? 1 : 0)}
-                    />
-                </label>
+                
                 <input
                     type="text"
                     name="phone_number"
@@ -142,7 +134,10 @@ const AddEmployee = () => {
                             <td>{emp.first_name}</td>
                             <td>{emp.employee_number}</td>
                             <td>{emp.union_id}</td>
-                            <td>{emp.employee_status === true ? '1' : '0'}</td>
+                            <td>
+                                <ToggleEmployee
+                                emp={emp}/>
+                            </td>
                             <td>{emp.phone_number}</td>
                             <td>{emp.email}</td>
                             <td>{emp.address}</td>
