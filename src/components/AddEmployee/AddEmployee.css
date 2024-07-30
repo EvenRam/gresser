@@ -14,5 +14,19 @@
 
   }
 
+  .employee-toggle.Active{
+    background-color: #396a54;
+    color: rgb(247, 243, 243);
+    /* font-weight: 700; */
 
+  }
+
+  .employee-toggle.Inactive{
+    background-color: rgb(134, 22, 22);
+    color: rgb(247, 243, 243);
+    /* font-weight: 700; */
+  }
   
+  .employee-inputs{
+    margin-left: 140px;
+  }

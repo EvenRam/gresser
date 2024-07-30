@@ -15,10 +15,11 @@ const dispatch = useDispatch();
                 
         })
     }
+    const toggleBtn = `employee-toggle ${props.emp.employee_status === true ? 'Active' : 'Inactive'}`
 
     return(
         
-        <button className='employee-toggle' onClick={toggleStatus}>
+        <button className={toggleBtn} onClick={toggleStatus}>
         {props.emp.employee_status === true ? 'Active' : 'Inactive'}
         </button>
     

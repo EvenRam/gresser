@@ -59,7 +59,7 @@ const AddEmployee = (props) => {
         <>
             <h2 className='employee-title'>Add Employee</h2>
 
-            <form onSubmit={handleSubmit}>
+            <form className='employee-inputs' onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name="last_name"
@@ -120,7 +120,7 @@ const AddEmployee = (props) => {
                         <th>First Name</th>
                         <th>Employee Number</th>
                         <th>Union ID</th>
-                        <th>Employee Status</th>
+                        <th>Status</th>
                         <th>Phone Number</th>
                         <th>Email</th>
                         <th>Address</th>
