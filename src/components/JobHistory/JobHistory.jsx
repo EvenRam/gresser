@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './JobHistory.css'; // Assume we have a separate CSS file
+import './JobHistory.css'; 
 
 const JobHistory = () => {
   const [jobs, setJobs] = useState([]);
