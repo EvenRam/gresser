@@ -30,6 +30,7 @@ import EditForm from '../CreateJobs/EditForm';
 import JobHistory from '../JobHistory/JobHistory';
 import DragDrop from '../SaveDrag/SaveDrag';
 import Scheduling from '../Scheduling/Scheduling';
+import Trades from '../Scheduling/Trades';
 
 
 
@@ -108,6 +109,7 @@ function App() {
 <Route exact path="/scheduling">
             <DndProvider backend={HTML5Backend}>
               <Scheduling />
+              <Trades />
             </DndProvider>
           </Route>
           <Route>
