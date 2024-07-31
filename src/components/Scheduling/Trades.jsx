@@ -21,9 +21,9 @@ const Trades = () => {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row' }}>
+    <div >
       {projectData.map(project => (
-        <ProjectBox
+        <ProjectBox className='trades'
           key={project.id}
           id={project.id}
           job_name={project.job_name}
