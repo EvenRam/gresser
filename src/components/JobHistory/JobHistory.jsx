@@ -4,12 +4,12 @@ import axios from 'axios';
 const JobHistory = () => {
   const [jobs, setJobs] = useState([]);
   const [filterDate, setFilterDate] = useState('');
+  const [report, setReport] = useState(null);
 
   useEffect(() => {
     fetchJobs();
   }, [filterDate]);
 
-  //get job history using the data filter if provided.  
   const fetchJobs = () => {
     let url = '/api/jobhistory';
     if (filterDate) {
@@ -25,12 +25,9 @@ const JobHistory = () => {
       });
   };
 
-  //Truncates date
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString();
   };
-
-  //Maps employees if the array has at least one entry
 
   const renderEmployees = (employees) => {
     if (employees && employees.length > 0) {
@@ -74,6 +71,36 @@ const JobHistory = () => {
       });
   };
 
+  const generateReport = () => {
+    let totalJobs = jobs.length;
+    let totalEmployees = 0;
+    let totalRainDays = 0;
+
+    for (let i = 0; i < jobs.length; i++) {
+      if (jobs[i].employees) {
+        totalEmployees += jobs[i].employees.length;
+      }
+      if (jobs[i].rain_days) {
+        totalRainDays += jobs[i].rain_days.length;
+      }
+    }
+
+    let totalEstimatedHours = totalEmployees * 8;
+    let averageEmployeesPerJob = 0;
+    if (totalJobs > 0) {
+      averageEmployeesPerJob = totalEmployees / totalJobs;
+      averageEmployeesPerJob = averageEmployeesPerJob.toFixed(2);
+    }
+    
+    setReport({
+      totalJobs: totalJobs,
+      totalEmployees: totalEmployees,
+      totalRainDays: totalRainDays,
+      averageEmployeesPerJob: averageEmployeesPerJob,
+      totalEstimatedHours: totalEstimatedHours,
+    });
+  };
+
   return (
     <div>
       <h1 className="jobhistory_title">Job History</h1>
@@ -86,6 +113,7 @@ const JobHistory = () => {
             onChange={(e) => setFilterDate(e.target.value)}
           />
         </label>
+        <button onClick={generateReport}>Generate Report</button>
       </div>
       <table className='history-table'>
         <thead>
@@ -104,7 +132,7 @@ const JobHistory = () => {
         <tbody className='history-tbody'>
           {jobs.length === 0 ? (
             <tr>
-              <td >No jobs occurred on this day</td>
+              <td colSpan="8">No jobs occurred on this day</td>
             </tr>
           ) : (
             jobs.map((job) => (
@@ -121,7 +149,9 @@ const JobHistory = () => {
                   <td>
                     <input
                       type="checkbox"
-                      checked={job.rain_days.some(rd => formatDate(rd.date) === formatDate(filterDate))}
+                      checked={job.rain_days.some(function(rd) {
+                        return formatDate(rd.date) === formatDate(filterDate);
+                      })}
                       onChange={() => rainCheckBox(job.job_id)}
                     />
                   </td>
@@ -131,6 +161,16 @@ const JobHistory = () => {
           )}
         </tbody>
       </table>
+      <h2>Report</h2>
+      {report && (
+        <div className="report-content">
+          <p>Total Jobs: {report.totalJobs}</p>
+          <p>Total Employees: {report.totalEmployees}</p>
+          <p>Total Rain Days: {report.totalRainDays}</p>
+          <p>Average Employees per Job: {report.averageEmployeesPerJob}</p>
+          <p>Total Estimated Hours: {report.totalEstimatedHours}</p>
+        </div>
+      )}
     </div>
   );
 };
