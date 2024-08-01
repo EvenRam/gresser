@@ -3,12 +3,10 @@ import { useDrop } from 'react-dnd';
 import Employee from './Employee';
 import { useDispatch, useSelector } from 'react-redux';
 
-
 const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
   console.log('Id in job box:', id)
   console.log("Employees in JobBox component:", employees)
-
-
+  
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'EMPLOYEE',
     drop: (item) => {
@@ -36,7 +34,6 @@ const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
       {employees.length === 0 ? (
         <p>No employees assigned</p>
       ) : (
-
         employees.map(employees => (
           <Employee
             key={employees.id}
@@ -50,6 +47,5 @@ const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
     </div>
   );
 };
-
 
 export default ProjectBox;
