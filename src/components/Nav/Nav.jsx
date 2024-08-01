@@ -10,12 +10,11 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
-        {/* <h2 className="nav-title">GRESSER</h2> */}
-        <img className='only-logo' src='/documentation/images/onlylogo.png' alt='Only Logo'/>
-        <img className='gresser' src='/documentation/images/Gresser.png' alt='Gresser'/>
-
-      </Link>
+        <img className='only-logo' src='/documentation/images/onlylogo.png' alt='Only Logo' />
+        <img className='gresser' src='/documentation/images/Gresser.png' alt='Gresser' />
+      {/* <Link to="/home">
+  
+      </Link> */}
       <div>
         {/* If no user is logged in, show these links */}
         {!user.id && (
@@ -29,6 +28,10 @@ function Nav() {
 
         {user.id && (
           <>
+            <Link className="navLink" to="/info">
+              Info
+            </Link>
+
             <Link className="navLink" to="/scheduling">
               Home
             </Link>
@@ -41,9 +44,9 @@ function Nav() {
               Employees
             </Link>
 
-          <Link className='navLink' to="/jobhistory">
-            Job History
-          </Link>
+            <Link className='navLink' to="/jobhistory">
+              Job History
+            </Link>
 
 
             <LogOutButton className="navLink" />

@@ -138,3 +138,20 @@ font-size:x-large;
     text-align: center;
   }
 
+.GresserPic{
+  height: 400px;
+  width: 400px; 
+ 
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+
+/*-----------------------------------------
+Info page 
+-------------------------------------------*/
+
+.info-title{
+  text-align: center;
+  font-weight: 600;
+}

@@ -7,9 +7,14 @@ import React from 'react';
 
 function InfoPage() {
   return (
+
+    <>
+    <h1 className='info-title'> Gresser</h1>
     <div className="container">
-      <p>Info Page</p>
+      <img className='GresserPic' src='/documentation/images/Gressercompany.jpg' alt='Gresser' />
     </div>
+
+    </>
   );
 }
 

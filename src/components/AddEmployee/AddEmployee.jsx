@@ -141,7 +141,7 @@ const AddEmployee = (props) => {
                             <td>{emp.phone_number}</td>
                             <td>{emp.email}</td>
                             <td>{emp.address}</td>
-                            <td><button onClick={() => handleEditClick(emp)}>Edit</button></td>
+                            <td><button className='employee-editbtn' onClick={() => handleEditClick(emp)}>Edit</button></td>
                         </tr>
                     ))}
                 </tbody>

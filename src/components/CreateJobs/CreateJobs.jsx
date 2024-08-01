@@ -54,26 +54,29 @@ const CreateJobs = () => {
             <form className='jobs-form' onSubmit={handleSubmit}>
 
                 <div className='job-id'>
-                    <label className='job-Number' htmlFor='Number'> Job Number:</label>
-                    <input
+                   
+                    <input className='job-Number' 
+                    placeholder='Job Number'
                         type='number'
                         id='jobid'
                         value={jobNumber}
                         onChange={(event) => setJobNumber(event.target.value)}
                     />
                   
-                    <label className='job-name'
-                        htmlFor='job-name'> Job Name: </label>
-                    <input
+                     
+                        
+                    <input className='job-name'
+                    placeholder='Job Name'
                         type='text'
                         id='jobname'
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                     />
                 
-                    <label className='job-location'
-                        htmlFor='job-location'> Location:</label>
-                    <input
+                
+                        
+                    <input className='job-location'
+                    placeholder='Location'
                         type='location'
                         id='joblocation'
                         value={location}

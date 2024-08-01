@@ -17,29 +17,37 @@
   .jobs-title{
     text-align: center;
     padding-bottom: 15px;
+    font-weight: 700;
   }
 
    .job-Number{
-      margin-left: 25px;
+      margin-left: 75px;
+      font-weight: 600;
 
   } 
 
   .job-name{
       margin-left: 25px;
+      font-weight: 600;
 
   }
 
   .job-location{
     margin-left: 25px;
+    font-weight: 600;
 
   }
 
   .date-start{
     margin-left: 25px;
+    font-weight: 600;
+
   }
 
   .date-end{
     margin-left: 25px;
+    font-weight: 600;
+
   }
 
 .job-button{
@@ -55,4 +63,17 @@
 .job-toggle.inactive {
   background-color: rgb(163, 42, 42);
   color: white;
+}
+
+.job-edit{
+  color: rgb(13, 46, 211);
+  font-weight: 500;
+}
+.job-delete{
+  color: rgb(160, 13, 13);
+  font-weight: 500;
+}
+
+.job-button{
+  font-weight: 600;
 }
