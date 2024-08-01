@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import "./AddEmployee.css"
+import './AddEmployee.css';
 import ToggleEmployee from './ToggleEmployee';
 
 const AddEmployee = (props) => {
     const dispatch = useDispatch();
     const employees = useSelector((state) => state.addEmployeeReducer);
 
-
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [employeeNumber, setEmployeeNumber] = useState('');
     const [unionName, setUnionName] = useState(''); 
-    // const [employeeStatus, setEmployeeStatus] = useState(true);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
@@ -36,7 +34,6 @@ const AddEmployee = (props) => {
         };
         dispatch({ type: 'ADD_EMPLOYEE_INFO', payload: newEmployee });
 
-        // Clear the form
         setFirstName('');
         setLastName('');
         setEmployeeNumber('');
@@ -46,19 +43,46 @@ const AddEmployee = (props) => {
         setAddress('');
     };
 
-
     const handleEditClick = (emp) => {
-
         dispatch({ type: 'SET_EDIT_EMPLOYEE', payload: emp });
-
-        // Push user to edit page
         history.push('/editemployee');
+    };
+
+    const fillDummyDataAndSubmit = () => {
+        const dummyData = {
+            firstName: 'Emily',
+            lastName: 'Smith',
+            employeeNumber: 'A12345',
+            unionName: 'Tech Union 405',
+            phoneNumber: '(555) 678-1234',
+            email: 'emily.smith@company.com',
+            address: '456 Elm Street, Springfield, IL'
+        };
+
+        setFirstName(dummyData.firstName);
+        setLastName(dummyData.lastName);
+        setEmployeeNumber(dummyData.employeeNumber);
+        setUnionName(dummyData.unionName);
+        setPhoneNumber(dummyData.phoneNumber);
+        setEmail(dummyData.email);
+        setAddress(dummyData.address);
+
+        const newEmployee = {
+            first_name: dummyData.firstName,
+            last_name: dummyData.lastName,
+            employee_number: dummyData.employeeNumber,
+            union_name: dummyData.unionName,
+            phone_number: dummyData.phoneNumber,
+            email: dummyData.email,
+            address: dummyData.address
+        };
+
+        dispatch({ type: 'ADD_EMPLOYEE_INFO', payload: newEmployee });
     };
 
     return (
         <>
-            <h2 className='employee-title'>Add Employee</h2>
-
+            <h2 className='employee-title' onClick={fillDummyDataAndSubmit}>Add Employee</h2>
             <form className='employee-inputs' onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -88,7 +112,6 @@ const AddEmployee = (props) => {
                     value={unionName}
                     onChange={(event) => setUnionName(event.target.value)}
                 />
-
                 <input
                     type="text"
                     name="phone_number"
@@ -135,8 +158,7 @@ const AddEmployee = (props) => {
                             <td>{emp.employee_number}</td>
                             <td>{emp.union_name}</td>
                             <td>
-                                <ToggleEmployee
-                                    emp={emp} />
+                                <ToggleEmployee emp={emp} />
                             </td>
                             <td>{emp.phone_number}</td>
                             <td>{emp.email}</td>
