@@ -166,81 +166,84 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 // Update an existing employee record
 router.put('/:id', async (req, res) => {
     const employeeId = req.params.id;
-    console.log("employee id", employeeId)
+    console.log("employee id", employeeId);
     const {
         first_name,
         last_name,
         employee_number,
-        union_id,
         employee_status,
         phone_number,
         email,
         address,
-        job_id
+        job_id,
+        union_id
     } = req.body;
 
     if (employee_status !== undefined &&
         !first_name &&
         !last_name &&
         !employee_number &&
-        !union_id &&
         !phone_number &&
         !email &&
-        !address) {
-
-        // Update employee status only
+        !address &&
+        !job_id &&
+        !union_id) {
+        // update employee status only
         const queryText = `
             UPDATE "add_employee"
             SET "employee_status" = $1
             WHERE "id" = $2;
         `;
-        console.log("Updating status with value", employee_status)
+        console.log("updating status with value", employee_status);
         try {
             await pool.query(queryText, [employee_status, employeeId]);
             res.sendStatus(204);
         } catch (error) {
-            console.log("Error updating employee status", error)
+            console.log("Error updating employee status", error);
             res.sendStatus(500);
         }
     } else {
-        const query = `
-            UPDATE "add_employee" 
-            SET 
-                "first_name" = $1, 
-                "last_name" = $2, 
-                "employee_number" = $3, 
-                "union_id" = $4, 
-                "employee_status" = $5, 
-                "phone_number" = $6, 
-                "email" = $7, 
-                "address" = $8,
-                "job_id" = $9
-            WHERE "id" = $10;
-        `;
+        // update all employee details
         const values = [
             first_name,
             last_name,
             employee_number,
-            union_id, 
             employee_status,
             phone_number,
             email,
             address,
             job_id,
+            union_id,
             employeeId
         ];
-
+        const query = `
+            UPDATE "add_employee"
+            SET
+                "first_name" = $1,
+                "last_name" = $2,
+                "employee_number" = $3,
+                "employee_status" = $4,
+                "phone_number" = $5,
+                "email" = $6,
+                "address" = $7,
+                "job_id" = $8,
+                "union_id" = $9
+            WHERE "id" = $10;
+        `;
         try {
             const result = await pool.query(query, values);
-            if (result.rowCount === 0) { 
-                return res.status(404).json({ error: 'Employee not found' });
+            if (result.rowCount > 0) {
+                res.sendStatus(204);
+            } else {
+                res.sendStatus(404);
             }
-            res.sendStatus(204);
         } catch (error) {
             console.error('Error updating employee:', error);
-            res.sendStatus(500);
+            res.status(500).json({ error: 'Internal server error' });
         }
     }
 });
+
+
 
 module.exports = router;
