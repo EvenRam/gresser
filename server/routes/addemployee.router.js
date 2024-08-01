@@ -25,8 +25,8 @@ router.get('/employeecard', (req, res) => {
         console.log("Current user is: ", req.user.username);
 
         const sqlText = `
-SELECT "id", "first_name", "last_name"
-FROM "add_employee"
+        SELECT "id", "first_name", "last_name", "phone_number", "email", "address"
+        FROM "add_employee"
 WHERE "project_id" IS NULL
 ORDER BY "last_name" ASC, "first_name" ASC;
         `;

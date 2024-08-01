@@ -1,10 +1,13 @@
 import React from 'react';
 import { useDrag } from 'react-dnd';
 
-const Employee = ({ id, name }) => {
-  console.log('Employee ID:', id); 
+const Employee = ({ id, name, number, email, address }) => {
+  console.log('Employee ID:', id);
   console.log('Employee Name:', name);
-  console.log()
+  console.log('Employee number', number)
+  console.log('Employee email', email)
+  console.log('Employee address', address)
+
 
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'EMPLOYEE',
@@ -13,6 +16,9 @@ const Employee = ({ id, name }) => {
       isDragging: !!monitor.isDragging(),
     }),
   }));
+
+// Unique ID for each modal
+  const modalId = `employee-modal-${id}`; 
 
   return (
     <div
@@ -30,7 +36,35 @@ const Employee = ({ id, name }) => {
         textOverflow: 'ellipsis',
       }}
     >
-      {name}
+ <button
+        type="button"
+        className="primary"
+        data-toggle="modal"
+        data-target={`#${modalId}`}
+      >
+        {name}
+      </button>
+
+      <div className="modal fade" id={modalId} tabIndex="-1" role="dialog" aria-labelledby={`${modalId}-label`} aria-hidden="true">
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id={`${modalId}-label`}>Employee Name: {name}</h5>
+              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <p>Email: {email}</p>
+              <p>Number: {number}</p>
+              <p>Address: {address}</p>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
