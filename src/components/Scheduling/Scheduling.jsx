@@ -41,19 +41,6 @@ const Scheduling = () => {
         address={`${employee.address}`}/>
       ))}
       
-      <h3>Projects</h3>
-      {projects.map((project) => (
-        <ProjectBox
-          key={project.id}
-          id={project.id}
-          project_name={project.project_name}
-          employees={project.employees}
-          moveEmployee={moveEmployee}
-        />
-
-
-        
-      ))}
 
     <div>
       <h3>Jobs</h3>
