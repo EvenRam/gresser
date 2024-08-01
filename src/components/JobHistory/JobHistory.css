@@ -1,4 +1,42 @@
-.report-container {
+.jobhistory_title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .date {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+  
+  .history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+  
+  .history-table th, .history-table td {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    text-align: left;
+  }
+  
+  .history-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .history-table td ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .history-table td ul li {
+    margin: 0.2rem 0;
+  }
+  
+  .report-container {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
@@ -21,3 +59,8 @@
   .report-table td:first-child {
     font-weight: bold;
   }
+  
+  .history-table th, .history-table td, .report-table td {
+    font-weight: bold;
+  }
+  
