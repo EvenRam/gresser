@@ -69,10 +69,27 @@ function* fetchEmployeeInfo() {
     }
   }
 
+  function* statusToggle(action){
+    try{
+      console.log("acrion.payload", action.payload)
+      const {id,employee_status} = action.payload;
+      console.log("Toggling employee status:", employee_status, "for employee ID:", id);
+      yield axios.put(`/api/addemployee/${id}`, {employee_status});
+      console.log("acrion.payload", id, employee_status)
+
+      yield put({
+        type: 'FETCH_EMPLOYEE_INFO'
+      });
+    } catch(error){
+      console.log("Error toggling employee status, error", error);
+    }
+  }
+
   export default function* rootSaga() {
     yield takeLatest('FETCH_EMPLOYEE_INFO', fetchEmployeeInfo);
     yield takeLatest('ADD_EMPLOYEE_INFO', addEmployeeInfo)
     yield takeLatest('FETCH_EMPLOYEE_CARD', fetchEmployeeCard)
     yield takeLatest('FETCH_PROJECTS_WITH_EMPLOYEES', fetchProjectsWithEmployees);
     yield takeLatest('MOVE_EMPLOYEE', handleMoveEmployee)
+    yield takeLatest ('EMPLOYEE_TOGGLE_STATUS', statusToggle)
   }

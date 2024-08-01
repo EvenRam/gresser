@@ -1,6 +1,6 @@
 .job-table,th, td {
     margin-top: 55px;
-    border: 3px solid rgb(207, 203, 203);
+    border:solid rgb(14, 13, 13);
       border-collapse: collapse;
       padding-left: 40px;
       padding-right: 40px;
@@ -45,4 +45,14 @@
 .job-button{
   margin-left: 15px;
 
+}
+
+.job-toggle.active {
+  background-color: #396a54;
+  color: rgb(247, 243, 243);
+}
+
+.job-toggle.inactive {
+  background-color: rgb(163, 42, 42);
+  color: white;
 }

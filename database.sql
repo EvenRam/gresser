@@ -18,7 +18,7 @@ CREATE TABLE "user" (
     "location" VARCHAR (2000),
     "union_affiliation" VARCHAR (1000),
     "employee_number" bigint, -- assuming Employee_Number is a numeric field
-     "username" VARCHAR (80) UNIQUE NOT NULL,
+    "email" VARCHAR (80) UNIQUE NOT NULL,
     "password" VARCHAR (1000) NOT NULL,
     "roleId" bigint,
     "active" boolean
