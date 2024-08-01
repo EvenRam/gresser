@@ -1,7 +1,7 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import axios from 'axios';
 
-// Fetch employee information
+
 function* fetchEmployeeInfo() {
   try {
     const response = yield call(axios.get, '/api/addemployee');
@@ -11,7 +11,7 @@ function* fetchEmployeeInfo() {
   }
 }
 
-// Add employee information
+
 function* addEmployeeInfo(action) {
   try {
     yield call(axios.post, '/api/addemployee', action.payload);
@@ -21,7 +21,7 @@ function* addEmployeeInfo(action) {
   }
 }
 
-// Fetch employee card information
+
 function* fetchEmployeeCard() {
   try {
     const response = yield call(axios.get, '/api/addemployee/employeecard');
@@ -31,27 +31,9 @@ function* fetchEmployeeCard() {
   }
 }
 
-// Fetch projects
-function* fetchProject() {
-  try {
-    const response = yield call(axios.get, '/api/project');
-    yield put({ type: 'SET_PROJECTS', payload: response.data });
-  } catch (error) {
-    console.error('Error fetching projects:', error);
-  }
-}
 
-// Add project
-function* addProject(action) {
-  try {
-    yield call(axios.post, '/api/project', { project_name: action.payload.project_name });
-    yield put({ type: 'FETCH_PROJECT' });
-  } catch (error) {
-    console.error('Error adding project:', error);
-  }
-}
 
-// Fetch projects with employees
+
 function* fetchProjectsWithEmployees() {
   try {
     const response = yield call(axios.get, '/api/project/withEmployees');
@@ -62,7 +44,7 @@ function* fetchProjectsWithEmployees() {
   }
 }
 
-// Handle moving employee
+
 function* handleMoveEmployee(action) {
   try {
     const { employeeId, targetProjectId } = action.payload;
@@ -74,7 +56,7 @@ function* handleMoveEmployee(action) {
   }
 }
 
-// Toggle employee status
+
 function* statusToggle(action) {
   try {
     console.log("action.payload", action.payload)
@@ -87,7 +69,7 @@ function* statusToggle(action) {
   }
 }
 
-// Fetch employee union information
+
 function* fetchEmployeeUnion() {
   try {
     const response = yield call(axios.get, '/api/addemployee/union');
@@ -97,7 +79,7 @@ function* fetchEmployeeUnion() {
   }
 }
 
-// Fetch unions with employees
+
 function* fetchUnionsWithEmployees() {
   try {
     const response = yield call(axios.get, '/api/addemployee/withunions');
@@ -108,7 +90,7 @@ function* fetchUnionsWithEmployees() {
   }
 }
 
-// Root saga
+
 export default function* rootSaga() {
   yield takeLatest('FETCH_EMPLOYEE_INFO', fetchEmployeeInfo);
   yield takeLatest('ADD_EMPLOYEE_INFO', addEmployeeInfo);

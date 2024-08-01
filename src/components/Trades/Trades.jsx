@@ -1,23 +1,31 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import UnionBox from './UnionBox'; 
 
 const Trades = () => {
     const dispatch = useDispatch();
     const unions = useSelector((state) => state.unionReducer);
+    const unionBox = useSelector((state) => state.unionBoxReducer);
 
     useEffect(() => {
         dispatch({ type: 'FETCH_EMPLOYEE_UNION' });
         dispatch({ type: 'FETCH_UNIONS_WITH_EMPLOYEES' });
     }, [dispatch]);
 
+
+
+
     return (
         <>
             <h2>Union Boxes</h2>
-            <div>
-                {unions.map(union => (
-                    <div key={union.id} style={{ border: '1px solid gray', padding: '10px', margin: '10px' }}>
-                        <h4>{union.union_name}</h4>
-                    </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+                {unionBox.map(union => (
+                    <UnionBox
+                        key={union.id}
+                        id={union.id}
+                        union_name={union.union_name}
+                        employees={union.employees}
+                    />
                 ))}
             </div>
         </>
@@ -25,4 +33,5 @@ const Trades = () => {
 };
 
 export default Trades;
+
 

@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
-// Get all employees with union names
+
 router.get('/', async (req, res) => {
     if (req.isAuthenticated()) {
         console.log('User is authenticated?:', req.isAuthenticated());
@@ -29,14 +29,14 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get employee cards without job_id
+
 router.get('/employeecard', async (req, res) => {
     if (req.isAuthenticated()) {
         console.log('User is authenticated?:', req.isAuthenticated());
         console.log("Current user is: ", req.user.username);
 
         const sqlText = `
-            SELECT "id", "first_name", "last_name"
+            SELECT "id", "first_name", "last_name",
             FROM "add_employee"
             WHERE "job_id" IS NULL
             ORDER BY "last_name" ASC, "first_name" ASC;
@@ -55,7 +55,7 @@ router.get('/employeecard', async (req, res) => {
     }
 });
 
-// Get all unions
+
 router.get('/union', async (req, res) => {
     if (req.isAuthenticated()) {
         console.log('User is authenticated?:', req.isAuthenticated());
@@ -80,7 +80,7 @@ router.get('/union', async (req, res) => {
     }
 });
 
-// Get all unions with their employees
+
 router.get('/withunions', async (req, res) => {
     try {
         const sqlText = `
@@ -100,7 +100,7 @@ router.get('/withunions', async (req, res) => {
         const unions = {};
         
         result.rows.forEach(row => {
-            // Initialize the union if it does not exist
+          
             if (!unions[row.union_id]) {
                 unions[row.union_id] = {
                     id: row.union_id,
@@ -109,7 +109,7 @@ router.get('/withunions', async (req, res) => {
                 };
             }
             
-            // Add the employee to the union's employee list if they exist
+            
             if (row.employee_id) {
                 unions[row.union_id].employees.push({
                     id: row.employee_id,
@@ -119,7 +119,7 @@ router.get('/withunions', async (req, res) => {
             }
         });
         
-        // Send the result as an array of unions
+       
         res.send(Object.values(unions));
     } catch (error) {
         console.error('Error fetching unions with employees:', error);
@@ -127,7 +127,7 @@ router.get('/withunions', async (req, res) => {
     }
 });
 
-// Add a new employee and union record
+
 router.post('/', rejectUnauthenticated, async (req, res) => {
     console.log('User is authenticated?:', req.isAuthenticated());
     console.log('Current user is:', req.user.username);
@@ -136,7 +136,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     const { first_name, last_name, employee_number, union_name, employee_status, phone_number, email, address, job_id } = req.body;
 
     try {
-        // Insert union and get its ID
+        
         const insertUnionQuery = `
             INSERT INTO "unions" ("union_name")
             VALUES ($1)
@@ -146,7 +146,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         const unionResult = await pool.query(insertUnionQuery, unionValues);
         const unionId = unionResult.rows[0].id;
 
-        // Insert employee with the union ID
+      
         const insertEmployeeQuery = `
             INSERT INTO "add_employee" (
                 "first_name", "last_name", "employee_number", "employee_status", "phone_number", "email", "address", "job_id", "union_id"
@@ -163,7 +163,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
     }
 });
 
-// Update an existing employee record
+
 router.put('/:id', async (req, res) => {
     const employeeId = req.params.id;
     console.log("employee id", employeeId);

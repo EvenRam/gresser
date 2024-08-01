@@ -84,14 +84,24 @@ const AddEmployee = (props) => {
                     value={employeeNumber}
                     onChange={(event) => setEmployeeNumber(event.target.value)}
                 />
-                <input
-                    type="text"
-                    name="union_name"
-                    placeholder="Union Number"
+<div>
+            <label htmlFor="union_name">Select Union:</label>
+            <select
+                id="union_name"
+                name="union_name"
+                value={unionName}
+                onChange={(event) => setUnionName(event.target.value)}
+            >
+                <option value="" disabled>Select a union</option>
+                <option value="21 - Bricklayers">21 - Bricklayers</option>
+                <option value="22 - Cement Masons/Finishers">22 - Cement Masons/Finishers</option>
+                <option value="23 - Laborers">23 - Laborers</option>
+                <option value="24 - Operators">24 - Operators</option>
+                <option value="25 - Carpenters">25 - Carpenters</option>
+            </select>
+        </div>
 
-                    value={unionName}
-                    onChange={(event) => setUnionName(event.target.value)}
-                />
+
 
                 <input
                     type="text"
