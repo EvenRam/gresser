@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import "./AddEmployee.css"
+import "./AddEmployee.css";
 
 const AddEmployee = () => {
     const dispatch = useDispatch();
@@ -10,13 +10,14 @@ const AddEmployee = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [employeeNumber, setEmployeeNumber] = useState('');
-    const [unionId, setUnionId] = useState('');
+    const [unionName, setUnionName] = useState(''); 
     const [employeeStatus, setEmployeeStatus] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
 
     const history = useHistory();
+
     useEffect(() => {
         dispatch({ type: 'FETCH_EMPLOYEE_INFO' });
     }, [dispatch]);
@@ -27,7 +28,7 @@ const AddEmployee = () => {
             first_name: firstName,
             last_name: lastName,
             employee_number: employeeNumber,
-            union_id: unionId,
+            union_name: unionName, 
             employee_status: employeeStatus,
             phone_number: phoneNumber,
             email,
@@ -39,25 +40,21 @@ const AddEmployee = () => {
         setFirstName('');
         setLastName('');
         setEmployeeNumber('');
-        setUnionId('');
+        setUnionName(''); 
         setEmployeeStatus(0);
         setPhoneNumber('');
         setEmail('');
         setAddress('');
     };
 
-
     const handleEditClick = (emp) => {
-      
         dispatch({ type: 'SET_EDIT_EMPLOYEE', payload: emp });
-
-        // Push user to edit page
         history.push('/editemployee');
     };
 
     return (
         <>
-<h2 className='employee-title'>Add Employee</h2>
+            <h2 className='employee-title'>Add Employee</h2>
 
             <form onSubmit={handleSubmit}>
                 <input
@@ -67,7 +64,7 @@ const AddEmployee = () => {
                     value={lastName}
                     onChange={(event) => setLastName(event.target.value)}
                 />
-                           <input
+                <input
                     type="text"
                     name="first_name"
                     placeholder="First Name"
@@ -83,10 +80,10 @@ const AddEmployee = () => {
                 />
                 <input
                     type="text"
-                    name="union_id"
-                    placeholder="Union ID"
-                    value={unionId}
-                    onChange={(event) => setUnionId(event.target.value)}
+                    name="union_name"
+                    placeholder="Union Number"
+                    value={unionName}
+                    onChange={(event) => setUnionName(event.target.value)}
                 />
                 <label>
                     Employee Status Active
@@ -121,13 +118,13 @@ const AddEmployee = () => {
                 <button className="employee-button" type="submit">Add Employee</button>
             </form>
 
-            <table className= "employee-table">
+            <table className="employee-table">
                 <thead>
                     <tr>
                         <th>Last Name</th>
                         <th>First Name</th>
                         <th>Employee Number</th>
-                        <th>Union ID</th>
+                        <th>Union</th>
                         <th>Employee Status</th>
                         <th>Phone Number</th>
                         <th>Email</th>
@@ -141,12 +138,14 @@ const AddEmployee = () => {
                             <td>{emp.last_name}</td>
                             <td>{emp.first_name}</td>
                             <td>{emp.employee_number}</td>
-                            <td>{emp.union_id}</td>
-                            <td>{emp.employee_status === true ? '1' : '0'}</td>
+                            <td>{emp.union_name}</td>
+                            <td>{emp.employee_status ? 'Active' : 'Inactive'}</td>
                             <td>{emp.phone_number}</td>
                             <td>{emp.email}</td>
                             <td>{emp.address}</td>
-                            <td><button  onClick={() => handleEditClick(emp)}>Edit</button></td>
+                            <td>
+                                <button onClick={() => handleEditClick(emp)}>Edit</button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
@@ -156,3 +155,4 @@ const AddEmployee = () => {
 };
 
 export default AddEmployee;
+
