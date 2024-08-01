@@ -8,7 +8,6 @@ const Employee = ({ id, name, number, email, address }) => {
   console.log('Employee email', email)
   console.log('Employee address', address)
 
-
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'EMPLOYEE',
     item: { id: id },
@@ -17,7 +16,6 @@ const Employee = ({ id, name, number, email, address }) => {
     }),
   }));
 
-// Unique ID for each modal
   const modalId = `employee-modal-${id}`; 
 
   return (
@@ -36,7 +34,7 @@ const Employee = ({ id, name, number, email, address }) => {
         textOverflow: 'ellipsis',
       }}
     >
- <button
+      <button
         type="button"
         className="primary"
         data-toggle="modal"

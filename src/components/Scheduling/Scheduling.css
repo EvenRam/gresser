@@ -1,0 +1,50 @@
+.scheduling-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .jobs-column {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .employees-column {
+    flex: 1;
+    margin-left: 20px;
+  }
+  
+  .project-box {
+    border: 1px solid gray;
+    width: 100%;
+    min-height: 100px;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: white;
+  }
+  
+  .employee {
+    padding: 8px;
+    margin: 4px 0;
+    border: 1px solid white;
+    cursor: move;
+    background-color: white;
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  @media (max-width: 768px) {
+    .scheduling-container {
+      flex-direction: column;
+    }
+  
+    .jobs-column,
+    .employees-column {
+      margin: 0;
+    }
+  }
