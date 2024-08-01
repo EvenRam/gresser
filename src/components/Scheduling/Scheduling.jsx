@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProjectBox from './ProjectBox';
 import Employee from './Employee';
 import JobDetails from '../CreateJobs/JobDetails';
+import cardReducer from '../../redux/reducers/card.reducer';
 
 /**
  * Comment
@@ -14,8 +15,6 @@ const Scheduling = () => {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_EMPLOYEE_CARD' });
-    // dispatch({ type: "FETCH_JOB"})
-    // dispatch({ type: 'FETCH_PROJECT' });
     dispatch({ type: 'FETCH_PROJECTS_WITH_EMPLOYEES' }); 
   }, [dispatch]);
 
@@ -27,13 +26,14 @@ const Scheduling = () => {
 
  
  
- 
+ console.log('Card Reducer', employeeCard)
 
   return (
     <div>
       <h3>Employees</h3>
       {employeeCard.map((employee) => (
         <Employee key={employee.id} id={employee.id} name={`${employee.first_name} ${employee.last_name}`} />
+        
       ))}
 
     <div>
