@@ -12,7 +12,7 @@ const AddEmployee = (props) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [employeeNumber, setEmployeeNumber] = useState('');
-    const [unionId, setUnionId] = useState('');
+    const [unionName, setUnionName] = useState(''); 
     // const [employeeStatus, setEmployeeStatus] = useState(true);
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
@@ -29,7 +29,7 @@ const AddEmployee = (props) => {
             first_name: firstName,
             last_name: lastName,
             employee_number: employeeNumber,
-            union_id: unionId,
+            union_name: unionName,
             phone_number: phoneNumber,
             email,
             address
@@ -40,7 +40,7 @@ const AddEmployee = (props) => {
         setFirstName('');
         setLastName('');
         setEmployeeNumber('');
-        setUnionId('');
+        setUnionName('');
         setPhoneNumber('');
         setEmail('');
         setAddress('');
@@ -85,8 +85,8 @@ const AddEmployee = (props) => {
                     type="text"
                     name="union_id"
                     placeholder="Union ID"
-                    value={unionId}
-                    onChange={(event) => setUnionId(event.target.value)}
+                    value={unionName}
+                    onChange={(event) => setUnionName(event.target.value)}
                 />
 
                 <input
@@ -119,7 +119,7 @@ const AddEmployee = (props) => {
                         <th>Last Name</th>
                         <th>First Name</th>
                         <th>Employee Number</th>
-                        <th>Union ID</th>
+                        <th>Union</th>
                         <th>Status</th>
                         <th>Phone Number</th>
                         <th>Email</th>
@@ -133,7 +133,7 @@ const AddEmployee = (props) => {
                             <td>{emp.last_name}</td>
                             <td>{emp.first_name}</td>
                             <td>{emp.employee_number}</td>
-                            <td>{emp.union_id}</td>
+                            <td>{emp.union_name}</td>
                             <td>
                                 <ToggleEmployee
                                     emp={emp} />
