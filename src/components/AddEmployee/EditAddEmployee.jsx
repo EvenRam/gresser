@@ -83,7 +83,7 @@ function EditEmployee() {
                     </label>
                 </div>
                 <div>
-                    <label>
+                    {/* <label>
                         Employee Status Active
                         <input
                             type="checkbox"
@@ -91,7 +91,7 @@ function EditEmployee() {
                             checked={editEmployee.employee_status === 1}
                             onChange={(event) => handleChange(event, 'employee_status')}
                         />
-                    </label>
+                    </label> */}
                 </div>
                 <div>
                     <label>

@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import "./AddEmployee.css";
+import "./AddEmployee.css"
+import ToggleEmployee from './ToggleEmployee';
 
-const AddEmployee = () => {
+
+const AddEmployee = (props) => {
     const dispatch = useDispatch();
     const employees = useSelector((state) => state.addEmployeeReducer);
+
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [employeeNumber, setEmployeeNumber] = useState('');
     const [unionName, setUnionName] = useState(''); 
-    const [employeeStatus, setEmployeeStatus] = useState(0);
+
+    // const [employeeStatus, setEmployeeStatus] = useState(true);
+
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
@@ -28,8 +33,8 @@ const AddEmployee = () => {
             first_name: firstName,
             last_name: lastName,
             employee_number: employeeNumber,
-            union_name: unionName, 
-            employee_status: employeeStatus,
+
+            union_name: unionName,
             phone_number: phoneNumber,
             email,
             address
@@ -40,14 +45,15 @@ const AddEmployee = () => {
         setFirstName('');
         setLastName('');
         setEmployeeNumber('');
-        setUnionName(''); 
-        setEmployeeStatus(0);
+        setUnionName('');
         setPhoneNumber('');
         setEmail('');
         setAddress('');
     };
 
     const handleEditClick = (emp) => {
+
+
         dispatch({ type: 'SET_EDIT_EMPLOYEE', payload: emp });
         history.push('/editemployee');
     };
@@ -56,7 +62,7 @@ const AddEmployee = () => {
         <>
             <h2 className='employee-title'>Add Employee</h2>
 
-            <form onSubmit={handleSubmit}>
+            <form className='employee-inputs' onSubmit={handleSubmit}>
                 <input
                     type="text"
                     name="last_name"
@@ -82,18 +88,11 @@ const AddEmployee = () => {
                     type="text"
                     name="union_name"
                     placeholder="Union Number"
+
                     value={unionName}
                     onChange={(event) => setUnionName(event.target.value)}
                 />
-                <label>
-                    Employee Status Active
-                    <input
-                        type="checkbox"
-                        name="employee_status"
-                        checked={employeeStatus === 1}
-                        onChange={(event) => setEmployeeStatus(event.target.checked ? 1 : 0)}
-                    />
-                </label>
+
                 <input
                     type="text"
                     name="phone_number"
@@ -125,7 +124,9 @@ const AddEmployee = () => {
                         <th>First Name</th>
                         <th>Employee Number</th>
                         <th>Union</th>
+
                         <th>Employee Status</th>
+
                         <th>Phone Number</th>
                         <th>Email</th>
                         <th>Address</th>
@@ -139,13 +140,14 @@ const AddEmployee = () => {
                             <td>{emp.first_name}</td>
                             <td>{emp.employee_number}</td>
                             <td>{emp.union_name}</td>
-                            <td>{emp.employee_status ? 'Active' : 'Inactive'}</td>
+                            <td>
+                                <ToggleEmployee
+                                    emp={emp} />
+                            </td>
                             <td>{emp.phone_number}</td>
                             <td>{emp.email}</td>
                             <td>{emp.address}</td>
-                            <td>
-                                <button onClick={() => handleEditClick(emp)}>Edit</button>
-                            </td>
+                            <td><button onClick={() => handleEditClick(emp)}>Edit</button></td>
                         </tr>
                     ))}
                 </tbody>

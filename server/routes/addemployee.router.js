@@ -28,6 +28,7 @@ router.get('/', (req, res) => {
     } else {
         res.sendStatus(401);
     }
+
 });
 
 
@@ -163,6 +164,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 
     const { first_name, last_name, employee_number, union_name, employee_status, phone_number, email, address, job_id } = req.body;
 
+
     try {
         // Insert union and get its ID
         const insertUnionQuery = `
@@ -221,6 +223,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     const employeeId = req.params.id;
+    console.log("employee id", employeeId)
     const {
         first_name,
         last_name,
@@ -233,7 +236,47 @@ router.put('/:id', async (req, res) => {
         job_id
     } = req.body;
 
-    const query = `
+    if (employee_status !== undefined &&
+        !first_name &&
+        !last_name &&
+        !employee_number &&
+        !union_id &&
+        !phone_number &&
+        !email &&
+        !address) {
+
+
+        // update employee status only
+        const queryText = `
+    UPDATE "add_employee"
+    SET "employee_status" = $1
+    WHERE  "id" = $2;
+    `;
+        console.log("updating status with value", employee_status)
+        try {
+            await pool.query(queryText, [employee_status, employeeId]);
+            res.sendStatus(204);
+        } catch (error) {
+            console.log(" Error updating employee status", error)
+            res.sendStatus(500);
+        }
+
+    } else {
+        // update all emplyee detiails 
+        const values = [
+            first_name,
+            last_name,
+            employee_number,
+            union_id,
+            employee_status,
+            phone_number,
+            email,
+            address,
+            project_id,
+            employeeId,
+        ];
+
+        const query = `
         UPDATE "add_employee" 
         SET 
             "first_name" = $1, 
@@ -247,7 +290,6 @@ router.put('/:id', async (req, res) => {
             "job_id" = $9
         WHERE "id" = $10;
     `;
-
     const values = [
         first_name,
         last_name,
@@ -265,11 +307,8 @@ router.put('/:id', async (req, res) => {
         const result = await pool.query(query, values);
         if (result.rowCount === 0) { 
             return res.status(404).json({ error: 'Employee not found' });
+
         }
-        res.sendStatus(200); 
-    } catch (error) {
-        console.error('Error updating employee:', error);
-        res.status(500).json({ error: 'Internal server error' });
     }
 });
 
