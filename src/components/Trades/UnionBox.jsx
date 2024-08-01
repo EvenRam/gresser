@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import Employee from './Employee';
+import Employee from '../Scheduling/Employee';
 import { useDispatch, useSelector } from 'react-redux';
 
-const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
-  console.log('Id in job box:', id)
-  console.log("Employees in JobBox component:", employees)
+const UnionBox = ({ id, employees, moveEmployee, union_name }) => {
+  console.log('NAME in union box:', union_name);
+  console.log('Employees in UnionBox component:', employees);
 
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'EMPLOYEE',
@@ -23,14 +23,14 @@ const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
       ref={drop}
       style={{
         border: '1px solid gray',
-        width: '200px',
-        minHeight: '100px',
+        width: '250px',
+        minHeight: '150px',
         margin: '10px',
         padding: '10px',
-        backgroundColor: isOver ? 'white' : 'white',
+        backgroundColor: isOver ? '#f0f0f0' : '#fff',
       }}
     >
-      <h4>{job_name}</h4>
+      <h4>{union_name}</h4>
       {employees.length === 0 ? (
         <p>No employees assigned</p>
       ) : (
@@ -42,4 +42,4 @@ const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
   );
 };
 
-export default ProjectBox;
+export default UnionBox;

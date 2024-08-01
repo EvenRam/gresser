@@ -12,7 +12,7 @@ router.post('/', rejectUnauthenticated, async (req, res) => {
         await pool.query('BEGIN');
 
         const result = await pool.query(
-            'UPDATE "add_employee" SET "project_id" = $1 WHERE "id" = $2',
+            'UPDATE "add_employee" SET "job_id" = $1 WHERE "id" = $2',
             [targetProjectId, employeeId]
         );
 

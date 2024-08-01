@@ -63,12 +63,16 @@ function* fetchEmployeeInfo() {
       // console.log('Reducer received:', employeeId, targetProjectId);
       yield call(axios.post, '/api/moveEmployee', { employeeId, targetProjectId });
       yield put({ type: 'FETCH_PROJECTS_WITH_EMPLOYEES'});
+      yield put({ type: 'FETCH_EMPLOYEE_CARD' });
   
     } catch (error) {
       yield put({ type: 'MOVE_EMPLOYEE_FAILURE', error }); 
     }
   }
 
+
+
+=======
   function* statusToggle(action){
     try{
       console.log("acrion.payload", action.payload)
@@ -82,6 +86,24 @@ function* fetchEmployeeInfo() {
       });
     } catch(error){
       console.log("Error toggling employee status, error", error);
+      
+        function* fetchEmployeeUnion() {
+    try {
+      const response = yield call(axios.get, '/api/addemployee/union');
+      yield put({ type: 'SET_EMPLOYEE_UNION', payload: response.data });
+    } catch (error) {
+      console.error('Error fetching employee union information:', error);
+    }
+  }
+
+  function* fetchUnionsWithEmployees() {
+    try {
+      const response = yield call(axios.get, '/api/addemployee/withunions');
+      console.log("Response for fetchProjectsWithEmployees", response.data)
+      yield put({ type: 'SET_EMPLOYEE_WITH_UNION', payload: response.data });
+    } catch (error) {
+      console.error('Error fetching union with employees:', error);
+
     }
   }
 
@@ -92,4 +114,7 @@ function* fetchEmployeeInfo() {
     yield takeLatest('FETCH_PROJECTS_WITH_EMPLOYEES', fetchProjectsWithEmployees);
     yield takeLatest('MOVE_EMPLOYEE', handleMoveEmployee)
     yield takeLatest ('EMPLOYEE_TOGGLE_STATUS', statusToggle)
+    yield takeLatest('FETCH_EMPLOYEE_UNION', fetchEmployeeUnion)
+    yield takeLatest('FETCH_UNIONS_WITH_EMPLOYEES', fetchUnionsWithEmployees);
+
   }

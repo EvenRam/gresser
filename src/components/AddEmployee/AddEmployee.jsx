@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import "./AddEmployee.css"
 import ToggleEmployee from './ToggleEmployee';
 
+
 const AddEmployee = (props) => {
     const dispatch = useDispatch();
     const employees = useSelector((state) => state.addEmployeeReducer);
@@ -13,12 +14,15 @@ const AddEmployee = (props) => {
     const [lastName, setLastName] = useState('');
     const [employeeNumber, setEmployeeNumber] = useState('');
     const [unionName, setUnionName] = useState(''); 
+
     // const [employeeStatus, setEmployeeStatus] = useState(true);
+
     const [phoneNumber, setPhoneNumber] = useState('');
     const [email, setEmail] = useState('');
     const [address, setAddress] = useState('');
 
     const history = useHistory();
+
     useEffect(() => {
         dispatch({ type: 'FETCH_EMPLOYEE_INFO' });
     }, [dispatch]);
@@ -29,6 +33,7 @@ const AddEmployee = (props) => {
             first_name: firstName,
             last_name: lastName,
             employee_number: employeeNumber,
+
             union_name: unionName,
             phone_number: phoneNumber,
             email,
@@ -46,12 +51,10 @@ const AddEmployee = (props) => {
         setAddress('');
     };
 
-
     const handleEditClick = (emp) => {
 
-        dispatch({ type: 'SET_EDIT_EMPLOYEE', payload: emp });
 
-        // Push user to edit page
+        dispatch({ type: 'SET_EDIT_EMPLOYEE', payload: emp });
         history.push('/editemployee');
     };
 
@@ -83,8 +86,9 @@ const AddEmployee = (props) => {
                 />
                 <input
                     type="text"
-                    name="union_id"
-                    placeholder="Union ID"
+                    name="union_name"
+                    placeholder="Union Number"
+
                     value={unionName}
                     onChange={(event) => setUnionName(event.target.value)}
                 />
@@ -120,7 +124,9 @@ const AddEmployee = (props) => {
                         <th>First Name</th>
                         <th>Employee Number</th>
                         <th>Union</th>
-                        <th>Status</th>
+
+                        <th>Employee Status</th>
+
                         <th>Phone Number</th>
                         <th>Email</th>
                         <th>Address</th>
@@ -151,3 +157,4 @@ const AddEmployee = (props) => {
 };
 
 export default AddEmployee;
+
