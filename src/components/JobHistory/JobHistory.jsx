@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './JobHistory.css'; 
 
 const JobHistory = () => {
   const [jobs, setJobs] = useState([]);
@@ -104,7 +105,7 @@ const JobHistory = () => {
   return (
     <div>
       <h1 className="jobhistory_title">Job History</h1>
-      <div className='date'>
+      <div className="date">
         <label>
           Date:
           <input 
@@ -115,7 +116,7 @@ const JobHistory = () => {
         </label>
         <button onClick={generateReport}>Generate Report</button>
       </div>
-      <table className='history-table'>
+      <table className="history-table">
         <thead>
           <tr>
             <th>Job Number</th>
@@ -129,7 +130,7 @@ const JobHistory = () => {
             {filterDate && <th>Mark as Rain Day</th>}
           </tr>
         </thead>
-        <tbody className='history-tbody'>
+        <tbody className="history-tbody">
           {jobs.length === 0 ? (
             <tr>
               <td colSpan="8">No jobs occurred on this day</td>
@@ -161,14 +162,35 @@ const JobHistory = () => {
           )}
         </tbody>
       </table>
-      <h2>Report</h2>
       {report && (
-        <div className="report-content">
-          <p>Total Jobs: {report.totalJobs}</p>
-          <p>Total Employees: {report.totalEmployees}</p>
-          <p>Total Rain Days: {report.totalRainDays}</p>
-          <p>Average Employees per Job: {report.averageEmployeesPerJob}</p>
-          <p>Total Estimated Hours: {report.totalEstimatedHours}</p>
+        <div className="report-container">
+          <div className="report-content">
+            <h2>Report</h2>
+            <table className="report-table">
+              <tbody>
+                <tr>
+                  <td>Total Jobs:</td>
+                  <td>{report.totalJobs}</td>
+                </tr>
+                <tr>
+                  <td>Total Employees:</td>
+                  <td>{report.totalEmployees}</td>
+                </tr>
+                <tr>
+                  <td>Total Rain Days:</td>
+                  <td>{report.totalRainDays}</td>
+                </tr>
+                <tr>
+                  <td>Average Employees per Job:</td>
+                  <td>{report.averageEmployeesPerJob}</td>
+                </tr>
+                <tr>
+                  <td>Total Estimated Hours:</td>
+                  <td>{report.totalEstimatedHours}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

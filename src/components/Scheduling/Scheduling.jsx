@@ -3,18 +3,21 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProjectBox from './ProjectBox';
 import Employee from './Employee';
+
+import JobDetails from '../CreateJobs/JobDetails';
+import cardReducer from '../../redux/reducers/card.reducer';
+
 /**
  * Comment
  */
 const Scheduling = () => {
   const dispatch = useDispatch();
   const employeeCard = useSelector((state) => state.cardReducer); 
-  const projects = useSelector((state) => state.projectReducer);
-console.log("employee card",employeeCard)
+  const jobsBox = useSelector((state) => state.jobReducer);
+
 
   useEffect(() => {
     dispatch({ type: 'FETCH_EMPLOYEE_CARD' });
-    dispatch({ type: 'FETCH_PROJECT' });
     dispatch({ type: 'FETCH_PROJECTS_WITH_EMPLOYEES' }); 
   }, [dispatch]);
   const moveEmployee = (employeeId, targetProjectId) => {
@@ -24,7 +27,7 @@ console.log("employee card",employeeCard)
   };
  
  
- 
+
   return (
     <div>
       <h3>Employees</h3>
@@ -47,8 +50,34 @@ console.log("employee card",employeeCard)
           employees={project.employees}
           moveEmployee={moveEmployee}
         />
+
+
         
       ))}
+
+    <div>
+      <h3>Jobs</h3>
+      {!jobsBox || jobsBox.length === 0 || !Array.isArray(jobsBox) ? (
+        <table>
+          <tbody>
+            <tr>
+              <td colSpan="7">YOU HAVE NO JOBS</td>
+            </tr>
+          </tbody>
+        </table>
+      ) : (
+        jobsBox.map((job) => (
+          <ProjectBox
+            key={job.id}
+            id={job.id}
+            job_name={job.job_name}
+            employees={job.employees}
+            moveEmployee={moveEmployee}
+          />
+        ))
+      )}
+    </div>
+
     </div>
   );
 };
