@@ -5,7 +5,7 @@
 
 .employee-table,th, td {
     margin-top: 55px;
-    border:solid rgb(11, 8, 8);
+    border: 3px solid rgb(11, 8, 8);
       border-collapse: collapse;
       padding-left: 50px;
       padding-right: 50px;
