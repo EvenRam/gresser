@@ -49,7 +49,7 @@ const CreateJobs = () => {
 
     return (
         <>
-            <h2 className='jobs-title'>Add Job</h2>
+            <h2 className='job-title'>Add Job</h2>
 
             <form className='jobs-form' onSubmit={handleSubmit}>
 

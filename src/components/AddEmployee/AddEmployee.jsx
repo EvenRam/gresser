@@ -63,6 +63,7 @@ const AddEmployee = (props) => {
             <h2 className='employee-title'>Add Employee</h2>
 
             <form className='employee-inputs' onSubmit={handleSubmit}>
+                <div>
                 <input
                     type="text"
                     name="last_name"
@@ -84,8 +85,8 @@ const AddEmployee = (props) => {
                     value={employeeNumber}
                     onChange={(event) => setEmployeeNumber(event.target.value)}
                 />
-<div>
-            <label htmlFor="union_name">Select Union:</label>
+
+            {/* <label htmlFor="union_name">Select Union:</label> */}
             <select
                 id="union_name"
                 name="union_name"
@@ -135,7 +136,7 @@ const AddEmployee = (props) => {
                         <th>Employee Number</th>
                         <th>Union</th>
 
-                        <th>Employee Status</th>
+                        <th>Status</th>
 
                         <th>Phone Number</th>
                         <th>Email</th>
