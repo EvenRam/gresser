@@ -17,7 +17,7 @@ const Trades = () => {
 
     return (
         <>
-            <h2>Union Boxes</h2>
+            <h2>Unions</h2>
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                 {unionBox.map(union => (
                     <UnionBox

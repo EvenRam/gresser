@@ -74,6 +74,7 @@ function* fetchEmployeeUnion() {
   try {
     const response = yield call(axios.get, '/api/addemployee/union');
     yield put({ type: 'SET_EMPLOYEE_UNION', payload: response.data });
+    yield put ({type: 'FETCH_UNIONS_WITH_EMPLOYEES'})
   } catch (error) {
     console.error('Error fetching employee union information:', error);
   }
