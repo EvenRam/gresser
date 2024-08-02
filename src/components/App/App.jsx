@@ -104,7 +104,7 @@ function App() {
 
           <Route exact path="/trades">
             <DndProvider backend={HTML5Backend}>
-              <Trades />
+              
             </DndProvider>
           </Route>
 
@@ -113,12 +113,18 @@ function App() {
 
 
 
-<ProtectedRoute exact path="/scheduling">
-
-            <DndProvider backend={HTML5Backend}>
-              <Scheduling />
-            </DndProvider>
-          </ProtectedRoute>
+          <ProtectedRoute exact path="/scheduling">
+      <DndProvider backend={HTML5Backend}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '20px' }}>
+          <div style={{ width: '100%' }}>
+            <Scheduling />
+          </div>
+          <div style={{ width: '100%', marginTop: '20px' }}>
+            <Trades />
+          </div>
+        </div>
+      </DndProvider>
+    </ProtectedRoute>
           <Route>
             <h1>404</h1>
           </Route>
