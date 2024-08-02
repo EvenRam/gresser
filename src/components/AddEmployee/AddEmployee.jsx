@@ -54,7 +54,7 @@ const AddEmployee = (props) => {
             firstName: 'Emily',
             lastName: 'Smith',
             employeeNumber: 'A12345',
-            unionName: '22 - Cement Masons/Finishers',
+            unionName: '25 - Carpenters',
             phoneNumber: '(555) 678-1234',
             email: 'emily.smith@company.com',
             address: '456 Elm Street, Springfield, IL'
