@@ -1,0 +1,23 @@
+.trades-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 50%;
+  padding: 20px;
+}
+
+.unions-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+
+.union-box {
+  flex: 0 0 45%; /* Adjust the width of the union box */
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 5px; /* Add margin to prevent overlap */
+}
+
+  

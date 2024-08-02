@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UnionBox from './UnionBox'; 
+import UnionBox from './UnionBox';
+import './Trades.css'; // Import the CSS file
+
 
 const Trades = () => {
     const dispatch = useDispatch();
@@ -16,19 +19,21 @@ const Trades = () => {
 
 
     return (
-        <>
-            <h2>Unions</h2>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div className="trades-container">
+            <h3>Unions</h3>
+            <div className="unions-container">
                 {unionBox.map(union => (
-                    <UnionBox
-                        key={union.id}
-                        id={union.id}
-                        union_name={union.union_name}
-                        employees={union.employees}
-                    />
+                    <div key={union.id} className="union-box">
+                        <UnionBox
+                            id={union.id}
+                            union_name={union.union_name}
+                            employees={union.employees}
+                        />
+                    </div>
+
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 
