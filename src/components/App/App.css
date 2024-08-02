@@ -155,3 +155,22 @@ Info page
   text-align: center;
   font-weight: 600;
 }
+
+
+
+.container {
+  display: flex;
+  align-items: center; /* Align items vertically */
+  margin-bottom: 25px;
+  margin-left: 25px;
+}
+
+.gresser-info{
+margin: 25px;
+margin-top: -50px;
+font-size: large;
+}
+
+li{
+  margin-bottom: 25px;
+}
