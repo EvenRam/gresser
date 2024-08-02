@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProjectBox from './ProjectBox';
 import Employee from './Employee';
-import './Scheduling.css'; // Import the CSS file
+import './Scheduling.css'; 
 
 const Scheduling = () => {
   const dispatch = useDispatch();
@@ -20,43 +20,22 @@ const Scheduling = () => {
 
   return (
     <div className="scheduling-container">
-      <h3>Employees</h3>
-      {employeeCard.map((employee) => (
-        <Employee 
-          key={employee.id} 
-          id={employee.id} 
-          name={`${employee.first_name} ${employee.last_name}`} 
-          number={`${employee.phone_number}`} 
-          email={`${employee.email}`} 
-          address={`${employee.address}`}
-        />
-      ))}
-
-      
-      
-
-    <div>
-      <h3>Jobs</h3>
-      {!jobsBox || jobsBox.length === 0 || !Array.isArray(jobsBox) ? (
-        <table>
-          <tbody>
-            <tr>
-              <td colSpan="7">YOU HAVE NO JOBS</td>
-            </tr>
-          </tbody>
-        </table>
-      ) : (
-        jobsBox.map((job) => (
-          <ProjectBox
-            key={job.id}
-            id={job.id}
-            job_name={job.job_name}
-            employees={job.employees}
-            moveEmployee={moveEmployee}
-          />
-        ))
-      )}
-
+      <div>
+        <h3>Employees</h3>
+        <div className="employee-list">
+          {employeeCard.map((employee) => (
+            <div key={employee.id} className="employee-item">
+              <Employee 
+                id={employee.id} 
+                name={`${employee.first_name} ${employee.last_name}`} 
+                number={`${employee.phone_number}`} 
+                email={`${employee.email}`} 
+                address={`${employee.address}`}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
 
       <div>
         <h3>Jobs</h3>
@@ -88,6 +67,7 @@ const Scheduling = () => {
 };
 
 export default Scheduling;
+
 
 
 

@@ -13,10 +13,10 @@
   }
   
   .job-box {
-    flex: 0 0 45%; /* Adjust the width of the job box */
+    flex: 0 0 45%;
     box-sizing: border-box;
     padding: 5px;
-    margin: 5px; /* Add margin to prevent overlap */
+    margin: 5px; 
   }
   
   .no-jobs-table {

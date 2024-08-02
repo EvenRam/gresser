@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UnionBox from './UnionBox'; 
-import UnionBox from './UnionBox';
-import './Trades.css'; // Import the CSS file
+import './Trades.css'; 
 
 
 const Trades = () => {
