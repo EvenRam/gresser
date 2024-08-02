@@ -1,13 +1,13 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
 import { useDispatch, useSelector } from 'react-redux';
-import EmployeeUnion from './EmployeeUnion';
+import Employee from '../Scheduling/Employee';
 
 const UnionBox = ({ id, employees, moveEmployee, union_name }) => {
   console.log('NAME in union box:', union_name);
   console.log('id in union box', id )
   const [{ isOver }, drop] = useDrop(() => ({
-    accept: 'EMPLOYEE_UNION',
+    accept: 'EMPLOYEE',
     drop: (item) => {
       console.log('Dropped item:', item);
       moveEmployee(item.id, id);
@@ -34,7 +34,7 @@ const UnionBox = ({ id, employees, moveEmployee, union_name }) => {
         <p>No employees assigned</p>
       ) : (
         employees.map(employee => (
-          <EmployeeUnion
+          <Employee
             key={employee.id}
             id={employee.id}
             name={`${employee.first_name} ${employee.last_name}`}

@@ -157,6 +157,12 @@ Info page
 }
 
 
+.parent-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+}
 
 .container {
   display: flex;
@@ -174,3 +180,4 @@ font-size: large;
 li{
   margin-bottom: 25px;
 }
+
