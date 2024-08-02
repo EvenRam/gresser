@@ -28,16 +28,88 @@
     /* font-weight: 700; */
   }
   
-  .employee-inputs{
-    margin-left: 70px;
-  }
+  
 
   .employee-button{
-
 font-weight: 600;
   }
 
   .employee-editbtn{
+    font-weight: 700;
+    color: rgb(5, 6, 11);
+
+  }
+
+  .employee-inputs{
+text-align: center;
+
+  }
+
+
+
+  /*-------------------------------
+  Edit employee
+  -----------------------*/
+  .Edit-title{
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 25px;
+  }
+
+  .employee-edit{
+    text-align: center;
+border: 2px solid hsl(0, 0%, 80%);
+    border-radius: 10px;
+    box-shadow: 10px 30px 10px hsla(0,0%,0%,0.1);
+    padding: 50px;
+    margin-left: 350px;
+    max-width: 700px;
+  }
+
+  .submit-employee-edit{
+    font-weight: 600;
+    margin-top: 25px;
+    font-size: large;
+
+  }
+
+  label{
     font-weight: 600;
 
+  }
+
+  .employee-toedit{
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  
+   .email-input, .adress-input{
+    width:100%;
+    text-align: center;
+  }
+
+   .l-name{
+    width:70%;
+    text-align: center;
+  } 
+
+  .union-id{
+    width:70%;
+    text-align: center;
+  }
+
+  .employee-num{
+    width: 55%;
+    text-align: center;
+  }
+
+  .phone-input{
+    width:60%;
+    text-align: center;
+  }
+
+  .f-name{
+    width:70%;
+    text-align: center;
   }

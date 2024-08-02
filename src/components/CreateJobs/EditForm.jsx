@@ -45,48 +45,62 @@ const EditForm = () => {
             {/* Render form with inputs for editiing jobs */}
 
             <h2 className='edit-job'> Edit Job </h2>
-            <p className='to=edit'> About to Edit {editJob.job_name}</p>
-            {console.log('edit job', editJob)}
             <form className='edit-form'
                 onSubmit={handleSubmit}>
+                <p className='to-edit'> About to Edit: {editJob.job_name}</p>
+
                 <div className='job-Numer'>
+                   <label> 
+                    Job Number: 
                     <input
                         placeholder='Job Number'
                         onChange={(event) => handleChange(event, 'job_number',)}
                         value={editJob.job_number}
                     />
+                    </label>
                 </div>
                 <div className='name'>
+                <label> 
+                    Job Number: 
                     <input
                         placeholder='Job Name'
                         value={editJob.job_name}
                         onChange={(event) => handleChange(event, 'job_name')}
                     />
+                     </label> 
                 </div>
                 <div className='location'>
-
+                <label> 
+                    Location
                     <input
                         placeholder='Location'
                         value={editJob.location}
                         onChange={(event) => handleChange(event, 'location')}
                     />
+                     </label> 
                 </div>
 
                 <div className='startdate'>
+                <label> 
+                    Start Date
                     <input
                         placeholder='Start Date'
                         type='date'
                         value={editJob.start_date}
                         onChange={(event) => handleChange(event, 'start_date')}
                     />
+                     </label> 
                 </div>
                 <div className='enddate'>
+                <label> 
+                    End Date
                     <input
                         placeholder=' End Date'
                         type='date'
                         value={editJob.end_date}
                         onChange={(event) => handleChange(event, 'end_date')}
                     />
+                     </label> 
                 </div>
 
                 <input className="update-button" type='submit' value='Update Job' />

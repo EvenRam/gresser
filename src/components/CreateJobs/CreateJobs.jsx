@@ -76,7 +76,9 @@ const CreateJobs = () => {
 
     return (
         <>
+
             <h2 className='jobs-title' onClick={fillDummyDataAndSubmit}>Add Job</h2>
+
 
             <form className='jobs-form' onSubmit={handleSubmit}>
                 <div className='job-id'>

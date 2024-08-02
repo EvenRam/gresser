@@ -34,27 +34,47 @@ router.get('/employeecard', async (req, res) => {
     if (req.isAuthenticated()) {
         console.log('User is authenticated?:', req.isAuthenticated());
         console.log("Current user is: ", req.user.username);
-
-        const sqlText = `
+        // created a variable notAssinged to determine to display the employees not assgined a job 
+        
+        const notAssigned = req.query === "false";
+        console.log(`Filter for employees without jobs: ${req.query.notAssigned}`);
+                
+        // Choose the SQL query based on whether 'notAssigned' is true
+        if (notAssigned){
+        const sqlText =
+        `
+            SELECT "id", "first_name", "last_name", "email", "address", "phone_number"
+            FROM "add_employee"
+            ORDER BY "last_name" ASC, "first_name" ASC;
+        `;
+        console.log("updating status with value", notAssigned);
+        try {
+            await pool.query(sqlText);
+            res.sendStatus(204);
+        } catch (error) {
+            console.log("Error updating employee status", error);
+            res.sendStatus(500);
+        }
+        } else {
+            const queryText = `
             SELECT "id", "first_name", "last_name", "email", "address", "phone_number"
             FROM "add_employee"
             WHERE "job_id" IS NULL
             ORDER BY "last_name" ASC, "first_name" ASC;
         `;
-
+        
+        console.log(`Executing SQL query: ${queryText}`);
         try {
-            const result = await pool.query(sqlText);
+            const result = await pool.query(queryText);
             console.log(`GET from database`, result);
             res.send(result.rows);
         } catch (error) {
-            console.log(`Error making database query ${sqlText}`, error);
+            console.log(`Error making database query ${queryText}`, error);
             res.sendStatus(500);
         }
-    } else {
-        res.sendStatus(401);
+    }
     }
 });
-
 
 router.get('/union', async (req, res) => {
     if (req.isAuthenticated()) {

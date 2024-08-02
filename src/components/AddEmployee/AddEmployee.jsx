@@ -87,6 +87,7 @@ const AddEmployee = (props) => {
             <h2 className='employee-title' onClick={fillDummyDataAndSubmit}>Add Employee</h2>
 
             <form className='employee-inputs' onSubmit={handleSubmit}>
+                <div>
                 <input
                     type="text"
                     name="last_name"
@@ -108,22 +109,26 @@ const AddEmployee = (props) => {
                     value={employeeNumber}
                     onChange={(event) => setEmployeeNumber(event.target.value)}
                 />
-                <div>
-                    <label htmlFor="union_name">Select Union:</label>
-                    <select
-                        id="union_name"
-                        name="union_name"
-                        value={unionName}
-                        onChange={(event) => setUnionName(event.target.value)}
-                    >
-                        <option value="" disabled>Select a union</option>
-                        <option value="21 - Bricklayers">21 - Bricklayers</option>
-                        <option value="22 - Cement Masons/Finishers">22 - Cement Masons/Finishers</option>
-                        <option value="23 - Laborers">23 - Laborers</option>
-                        <option value="24 - Operators">24 - Operators</option>
-                        <option value="25 - Carpenters">25 - Carpenters</option>
-                    </select>
-                </div>
+
+            {/* <label htmlFor="union_name">Select Union:</label> */}
+            <select
+                id="union_name"
+                name="union_name"
+                value={unionName}
+                onChange={(event) => setUnionName(event.target.value)}
+            >
+                <option value="" disabled>Select a union</option>
+                <option value="21 - Bricklayers">21 - Bricklayers</option>
+                <option value="22 - Cement Masons/Finishers">22 - Cement Masons/Finishers</option>
+                <option value="23 - Laborers">23 - Laborers</option>
+                <option value="24 - Operators">24 - Operators</option>
+                <option value="25 - Carpenters">25 - Carpenters</option>
+            </select>
+        </div>
+
+
+
+
                 <input
                     type="text"
                     name="phone_number"
@@ -155,7 +160,11 @@ const AddEmployee = (props) => {
                         <th>First Name</th>
                         <th>Employee Number</th>
                         <th>Union</th>
-                        <th>Employee Status</th>
+
+
+                        <th>Status</th>
+
+
                         <th>Phone Number</th>
                         <th>Email</th>
                         <th>Address</th>
