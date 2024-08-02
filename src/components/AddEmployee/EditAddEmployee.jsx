@@ -34,14 +34,16 @@ function EditEmployee() {
 
     return (
         <div>
-            <h2>Edit Employee</h2>
-            <p>About to edit: {editEmployee.last_name} {editEmployee.first_name} with ID: {editEmployee.id}</p>
+            <h2 className='Edit-title'> Edit Employee</h2>
 
-            <form onSubmit={handleSubmit}>
+            <form className='employee-edit' onSubmit={handleSubmit}>
+            <p className='employee-toedit'>About to edit: {editEmployee.last_name} {editEmployee.first_name} </p>
+
                 <div>
                     <label>
                         Last Name
                         <input
+                        className='l-name'
                             type="text"
                             name="last_name"
                             value={editEmployee.last_name}
@@ -53,6 +55,7 @@ function EditEmployee() {
                     <label>
                         First Name
                         <input
+                        className='f-name'
                             type="text"
                             name="first_name"
                             value={editEmployee.first_name}
@@ -64,6 +67,7 @@ function EditEmployee() {
                     <label>
                         Employee Number
                         <input
+                        className='employee-num'
                             type="text"
                             name="employee_number"
                             value={editEmployee.employee_number}
@@ -75,6 +79,7 @@ function EditEmployee() {
                     <label>
                         Union ID
                         <input
+                        className='union-id'
                             type="text"
                             name="union_id"
                             value={editEmployee.union_id}
@@ -97,6 +102,7 @@ function EditEmployee() {
                     <label>
                         Phone Number
                         <input
+                         className='phone-input'
                             type="text"
                             name="phone_number"
                             value={editEmployee.phone_number}
@@ -108,6 +114,7 @@ function EditEmployee() {
                     <label>
                         Email
                         <input
+                        className='email-input'
                             type="text"
                             name="email"
                             value={editEmployee.email}
@@ -119,6 +126,7 @@ function EditEmployee() {
                     <label>
                         Address
                         <input
+                         className='adress-input'
                             type="text"
                             name="address"
                             value={editEmployee.address}
@@ -126,7 +134,7 @@ function EditEmployee() {
                         />
                     </label>
                 </div>
-                <button type="submit">Update Employee</button>
+                <button className='submit-employee-edit' type="submit">Update Employee</button>
             </form>
         </div>
     );

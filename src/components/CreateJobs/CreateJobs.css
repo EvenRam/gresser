@@ -14,10 +14,10 @@
     text-align: center;
   }
 
-  .jobs-title{
+  .job-title{
     text-align: center;
     padding-bottom: 15px;
-    font-weight: 700;
+    font-weight: 900;
   }
 
    .job-Number{
@@ -66,14 +66,50 @@
 }
 
 .job-edit{
-  color: rgb(13, 46, 211);
-  font-weight: 500;
+  color: rgb(9, 10, 16);
+  font-weight: 600;
 }
 .job-delete{
-  color: rgb(160, 13, 13);
-  font-weight: 500;
+  color: rgb(149, 21, 21);
+  font-weight: 600;
 }
 
 .job-button{
   font-weight: 600;
 }
+
+.edit-job{
+  text-align: center;
+  font-weight: 700;
+  padding-top: 15px;
+  margin-bottom: 25px;
+}
+
+.edit-form{
+text-align: center;
+border: 2px solid hsl(0, 0%, 80%);
+    border-radius: 10px;
+    box-shadow: 10px 30px 10px hsla(0,0%,0%,0.1);
+    padding: 50px;
+    margin-left: 490px;
+    text-align: center;
+    max-width: 450px;
+}
+
+.to-edit{
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: large;
+}
+
+.job-form{
+  text-align: center;
+
+}
+
+.update-button{
+  font-weight: 700;
+  font-size: large;
+
+}
+
