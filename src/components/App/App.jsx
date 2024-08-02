@@ -115,13 +115,9 @@ function App() {
 
           <ProtectedRoute exact path="/scheduling">
       <DndProvider backend={HTML5Backend}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', padding: '20px' }}>
-          <div style={{ width: '100%' }}>
-            <Scheduling />
-          </div>
-          <div style={{ width: '100%', marginTop: '20px' }}>
-            <Trades />
-          </div>
+        <div className="parent-container">
+          <Scheduling />
+          <Trades />
         </div>
       </DndProvider>
     </ProtectedRoute>

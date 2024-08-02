@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProjectBox from './ProjectBox';
 import Employee from './Employee';
+import './Scheduling.css'; // Import the CSS file
 
 const Scheduling = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Scheduling = () => {
   };
 
   return (
-    <div>
+    <div className="scheduling-container">
       <h3>Employees</h3>
       {employeeCard.map((employee) => (
         <Employee 
@@ -34,7 +35,7 @@ const Scheduling = () => {
       <div>
         <h3>Jobs</h3>
         {!jobsBox || jobsBox.length === 0 || !Array.isArray(jobsBox) ? (
-          <table>
+          <table className="no-jobs-table">
             <tbody>
               <tr>
                 <td colSpan="7">YOU HAVE NO JOBS</td>
@@ -42,9 +43,9 @@ const Scheduling = () => {
             </tbody>
           </table>
         ) : (
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', maxWidth: '40%' }}>
+          <div className="jobs-container">
             {jobsBox.map((job) => (
-              <div key={job.id} style={{ width: '35%', boxSizing: 'border-box', padding: '10px' }}>
+              <div key={job.id} className="job-box">
                 <ProjectBox
                   id={job.id}
                   job_name={job.job_name}
@@ -61,6 +62,8 @@ const Scheduling = () => {
 };
 
 export default Scheduling;
+
+
 
 
 
