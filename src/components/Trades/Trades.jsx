@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import UnionBox from './UnionBox'; 
 import UnionBox from './UnionBox';
 import './Trades.css'; // Import the CSS file
+
 
 const Trades = () => {
     const dispatch = useDispatch();
@@ -12,6 +14,9 @@ const Trades = () => {
         dispatch({ type: 'FETCH_EMPLOYEE_UNION' });
         dispatch({ type: 'FETCH_UNIONS_WITH_EMPLOYEES' });
     }, [dispatch]);
+
+
+
 
     return (
         <div className="trades-container">
@@ -25,6 +30,7 @@ const Trades = () => {
                             employees={union.employees}
                         />
                     </div>
+
                 ))}
             </div>
         </div>
@@ -32,6 +38,5 @@ const Trades = () => {
 };
 
 export default Trades;
-
 
 

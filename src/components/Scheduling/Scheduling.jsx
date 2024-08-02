@@ -32,6 +32,32 @@ const Scheduling = () => {
         />
       ))}
 
+      
+      
+
+    <div>
+      <h3>Jobs</h3>
+      {!jobsBox || jobsBox.length === 0 || !Array.isArray(jobsBox) ? (
+        <table>
+          <tbody>
+            <tr>
+              <td colSpan="7">YOU HAVE NO JOBS</td>
+            </tr>
+          </tbody>
+        </table>
+      ) : (
+        jobsBox.map((job) => (
+          <ProjectBox
+            key={job.id}
+            id={job.id}
+            job_name={job.job_name}
+            employees={job.employees}
+            moveEmployee={moveEmployee}
+          />
+        ))
+      )}
+
+
       <div>
         <h3>Jobs</h3>
         {!jobsBox || jobsBox.length === 0 || !Array.isArray(jobsBox) ? (

@@ -66,15 +66,14 @@ router.post('/', rejectUnauthenticated, (req, res) => {
         });
 });
 
-// Route to update job or job status by id
+
 router.put('/:job_id', rejectUnauthenticated, (req, res) => {
-    // get job id from the URl params
+    
     const jobId = req.params.job_id;
-    // get the job details and status from request body
+   
     const { job_number, job_name, location, start_date, end_date, status } = req.body;
 
-    // Check if status is provided and no other job info
-    // Only status should be updated 
+  
     if (status !== undefined &&
         !job_number &&
         !job_name &&
@@ -82,7 +81,7 @@ router.put('/:job_id', rejectUnauthenticated, (req, res) => {
         !start_date &&
         !end_date) {
 
-        // Update job status only
+        
         const queryText = `
             UPDATE "jobs"
             SET "status" = $1
@@ -91,14 +90,14 @@ router.put('/:job_id', rejectUnauthenticated, (req, res) => {
         console.log("Updating status with values:", { status, jobId });
 
         pool.query(queryText, [status, jobId])
-            //send 204 --- No content
+            
             .then(() => res.sendStatus(204))
             .catch((error) => {
                 console.log('Error updating job status:', error);
                 res.sendStatus(500);
             });
     } else {
-        // Update job details
+        
         const updateJob = [
             job_number,
             job_name,
@@ -135,16 +134,16 @@ router.put('/:job_id', rejectUnauthenticated, (req, res) => {
 });
 
 
-// Route to delete job by job_id
+
 router.delete('/:job_id', (req, res) => {
-    // Get job Id from url params
+    
     const jobId = req.params.job_id;
     console.log('Delete request for jobId', jobId);
     const queryText = `
         DELETE FROM "jobs"
         WHERE "job_id" = $1;
     `;
-    // delete job from database
+    
     pool.query(queryText, [jobId])
         .then((result) => {
             if (result.rowCount > 0) {
