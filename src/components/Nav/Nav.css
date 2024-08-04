@@ -4,8 +4,8 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 0 30px;
-  background-color: #0d1212;
+  /* margin: 0 0 0px; */
+  background-color: #363636;
 
   overflow: hidden;
   
@@ -26,9 +26,9 @@
 .navLink {
   display: inline-block;
   color: #f2f2f2;
-  background-color: #0a0b0b;
+  background-color: #363636;
   text-align: center;
-  padding: 30px 30px;
+  padding: 40px 70px;
   text-decoration: none;
   font-size: 20px;
   font-weight: 900;
@@ -48,18 +48,13 @@
 
 }
 
-img,.only-logo{
+img,.DaveLogo{
   height: 125px;
-  width: 150px; 
+  width: 200px; 
   margin-left: 25px;
   margin-top: 15px;
   margin-bottom: 15px;
 
 }
 
-.gresser{
-  height: 75px;
-  width: 250px;
-  margin-bottom: 20px;
-  margin-left: -90px;
-}
+

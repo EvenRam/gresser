@@ -4,9 +4,10 @@ import Employee from './Employee';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
+const ProjectBox = ({ id, employees,moveEmployee, job_name }) => {
   console.log('Id in job box:', id)
   console.log("Employees in JobBox component:", employees)
+  console.log("job_name", job_name)
 
 
   const [{ isOver }, drop] = useDrop(() => ({
@@ -27,8 +28,8 @@ const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
         border: '1px solid gray',
         width: '200px',
         minHeight: '100px',
-        margin: '10px',
-        padding: '10px',
+        margin: '-5px',
+        padding: '5px',
         backgroundColor: isOver ? 'white' : 'white',
       }}
     >
@@ -37,14 +38,14 @@ const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
         <p>No employees assigned</p>
       ) : (
 
-        employees.map(employees => (
+        employees.map(employee => (
           <Employee
-            key={employees.id}
-            id={employees.id}
-            name={`${employees.first_name} ${employees.last_name}`}
-            number={`${employees.phone_number}`}
-            email={`${employees.email}`}
-            address={`${employees.address}`} />
+            key={employee.id}
+            id={employee.id}
+            name={`${employee.first_name} ${employee.last_name}`}
+            number={`${employee.phone_number}`}
+            email={`${employee.email}`}
+            address={`${employee.address}`} />
         ))
       )}
     </div>

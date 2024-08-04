@@ -19,7 +19,7 @@ const Trades = () => {
 
     return (
         <div className="trades-container">
-            <h3>Unions</h3>
+            <h3 className='union-title'>Unions</h3>
             <div className="unions-container">
                 {unionBox.map(union => (
                     <div key={union.id} className="union-box">

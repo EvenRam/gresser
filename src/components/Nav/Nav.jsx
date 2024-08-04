@@ -10,8 +10,8 @@ function Nav() {
 
   return (
     <div className="nav">
-        <img className='only-logo' src='/documentation/images/onlylogo.png' alt='Only Logo' />
-        <img className='gresser' src='/documentation/images/Gresser.png' alt='Gresser' />
+        <img className='only-logo' src='/documentation/images/DaveLogo.png' alt='Only Logo' />
+        {/* <img className='gresser' src='/documentation/images/Gresser.png' alt='Gresser' /> */}
       {/* <Link to="/home">
   
       </Link> */}
@@ -28,12 +28,9 @@ function Nav() {
 
         {user.id && (
           <>
-            <Link className="navLink" to="/info">
-              Info
-            </Link>
 
             <Link className="navLink" to="/scheduling">
-              Home
+              Schedule
             </Link>
 
             <Link className="navLink" to="/jobs">
@@ -53,9 +50,7 @@ function Nav() {
           </>
         )}
 
-        <Link className="navLink" to="/about">
-          About
-        </Link>
+      
       </div>
     </div>
   );

@@ -34,12 +34,11 @@ router.get('/employeecard', async (req, res) => {
     if (req.isAuthenticated()) {
         console.log('User is authenticated?:', req.isAuthenticated());
         console.log("Current user is: ", req.user.username);
-        // created a variable notAssinged to determine to display the employees not assgined a job 
         
-        const notAssigned = req.query === "false";
+        
+        const notAssigned = req.query === "true";
         console.log(`Filter for employees without jobs: ${req.query.notAssigned}`);
                 
-        // Choose the SQL query based on whether 'notAssigned' is true
         if (notAssigned){
         const sqlText =
         `
@@ -66,7 +65,7 @@ router.get('/employeecard', async (req, res) => {
         console.log(`Executing SQL query: ${queryText}`);
         try {
             const result = await pool.query(queryText);
-            console.log(`GET from database`, result);
+            console.log(`GET EmployeeCard from database`, result.rows);
             res.send(result.rows);
         } catch (error) {
             console.log(`Error making database query ${queryText}`, error);
