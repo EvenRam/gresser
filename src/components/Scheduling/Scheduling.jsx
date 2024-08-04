@@ -2,16 +2,17 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ProjectBox from './ProjectBox';
 import Employee from './Employee';
-import './Scheduling.css'; 
+import './EmployeeStyles.css';
+import './Scheduling.css';
 
 const Scheduling = () => {
   const dispatch = useDispatch();
-  const employeeCard = useSelector((state) => state.cardReducer); 
+  const employeeCard = useSelector((state) => state.cardReducer);
   const jobsBox = useSelector((state) => state.jobReducer);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_EMPLOYEE_CARD' });
-    dispatch({ type: 'FETCH_PROJECTS_WITH_EMPLOYEES' }); 
+    dispatch({ type: 'FETCH_PROJECTS_WITH_EMPLOYEES' });
   }, [dispatch]);
 
   const moveEmployee = (employeeId, targetProjectId) => {
@@ -25,12 +26,13 @@ const Scheduling = () => {
         <div className="employee-list">
           {employeeCard.map((employee) => (
             <div key={employee.id} className="employee-item">
-              <Employee 
-                id={employee.id} 
-                name={`${employee.first_name} ${employee.last_name}`} 
-                number={`${employee.phone_number}`} 
-                email={`${employee.email}`} 
-                address={`${employee.address}`}
+              <Employee
+                id={employee.id}
+                name={`${employee.first_name} ${employee.last_name}`}
+                number={employee.phone_number}
+                email={employee.email}
+                address={employee.address}
+                unionName={employee.union_name}
               />
             </div>
           ))}
@@ -67,9 +69,3 @@ const Scheduling = () => {
 };
 
 export default Scheduling;
-
-
-
-
-
-
