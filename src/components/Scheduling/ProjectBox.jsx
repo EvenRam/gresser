@@ -21,6 +21,9 @@ const ProjectBox = ({ id, employees,moveEmployee, job_name }) => {
     }),
   }));
 
+  const employeeCount = employees.length;
+
+
   return (
     <div
       ref={drop}
@@ -48,7 +51,10 @@ const ProjectBox = ({ id, employees,moveEmployee, job_name }) => {
             address={`${employee.address}`} />
         ))
       )}
+      <hr className='breakline'/>
+        <h6 className='employee-count'>Employees {employeeCount}</h6>
     </div>
+    
   );
 };
 

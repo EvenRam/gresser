@@ -1,27 +1,37 @@
 .scheduling-container {
-    display: flex;
-    flex-direction: column;
-    padding: 2px;
-    width: 100%;
-  }
-  
-  .jobs-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    max-width: 100%;
-  }
-  
-  .job-box {
-    flex: 0 0 5%;
-    box-sizing: border-box;
-    padding: 5px;
-    margin: 5px; 
-  }
-  
-  .no-jobs-table {
-    width: 100%;
-    text-align: center;
-  }
-  
-  
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  width: 100%;
+}
+
+.jobs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+
+.job-box {
+  flex: 0 0 5%;
+  box-sizing: border-box;
+  padding: 5px;
+  margin: 5px;
+}
+
+.no-jobs-table {
+  width: 100%;
+  text-align: center;
+}
+
+.breakline {
+  margin: 0px 0;
+  margin-bottom: 0px;
+  border-top: 2px solid black
+}
+
+.employee-count {
+  margin-bottom: 0px;
+  text-align: end;
+
+}
