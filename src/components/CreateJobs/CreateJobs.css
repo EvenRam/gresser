@@ -9,6 +9,26 @@
 
   }
 
+  table {
+    width: 90%;
+  }
+
+  th, td {
+    padding: .2em;
+    min-width: 1.5em;
+    margin-left: 150px;
+    text-align: center;
+
+  }
+
+  thead {
+    background: rgb(218, 221, 222);
+    color: black;
+    text-align: center;
+    
+  }
+
+
 
 
   .jobs-title{

@@ -29,14 +29,15 @@ const ProjectBox = ({ id, employees,moveEmployee, job_name }) => {
       ref={drop}
       style={{
         border: '1px solid gray',
-        width: '200px',
+        width: '170px',
         minHeight: '100px',
         margin: '-5px',
         padding: '5px',
         backgroundColor: isOver ? 'white' : 'white',
       }}
     >
-      <h4>{job_name}</h4>
+      <h4 className='projectboxname'>{job_name}</h4>
+      <hr className='namelinebreak'/>
       {employees.length === 0 ? (
         <p>No employees assigned</p>
       ) : (
@@ -52,7 +53,7 @@ const ProjectBox = ({ id, employees,moveEmployee, job_name }) => {
         ))
       )}
       <hr className='breakline'/>
-        <h6 className='employee-count'>Employees {employeeCount}</h6>
+        <h6 className='employee-count'>Employees: {employeeCount}</h6>
     </div>
     
   );

@@ -29,7 +29,7 @@ const Employee = ({ id, name, number, email, address }) => {
       style={{
         opacity: isDragging ? 0.5 : 1,
         padding: '1px',
-        margin: '1px',
+        margin: '-8px 0 0 2px',
         // border: '1px solid white',
         cursor: 'move',
         // backgroundColor: 'white',

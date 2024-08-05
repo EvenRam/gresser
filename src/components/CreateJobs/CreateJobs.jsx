@@ -77,19 +77,19 @@ const CreateJobs = () => {
     return (
         <>
 
-            <h2 className='jobs-title' onClick={fillDummyDataAndSubmit}>Add Job</h2>
+            <h2 className='jobs-title' onClick={fillDummyDataAndSubmit}>Projects</h2>
 
 
             <form className='jobs-form' onSubmit={handleSubmit}>
                 <div className='job-id'>
-                    <label className='job-Number' htmlFor='Number'> Job Number:</label>
+                    <label className='job-Number' htmlFor='Number'> Project Number:</label>
                     <input
                         type='number'
                         id='jobid'
                         value={jobNumber}
                         onChange={(event) => setJobNumber(event.target.value)}
                     />
-                    <label className='job-name' htmlFor='job-name'> Job Name: </label>
+                    <label className='job-name' htmlFor='job-name'> Name: </label>
                     <input
                         type='text'
                         id='jobname'

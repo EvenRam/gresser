@@ -34,7 +34,7 @@ function Nav() {
             </Link>
 
             <Link className="navLink" to="/jobs">
-              Jobs
+              Projects
             </Link>
 
             <Link className="navLink" to="/addemployee">
@@ -42,7 +42,7 @@ function Nav() {
             </Link>
 
             <Link className='navLink' to="/jobhistory">
-              Job History
+              Project History
             </Link>
 
 

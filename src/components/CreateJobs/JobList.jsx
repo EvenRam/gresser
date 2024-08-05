@@ -20,8 +20,8 @@ return(
 
             <thead>
                 <tr>
-                    <th>Job Number</th>
-                    <th>Job Name</th>
+                    <th>Project Number</th>
+                    <th> Name</th>
                     <th>Location</th>
                     <th>Start Date</th>
                     <th>End Date</th>
@@ -34,7 +34,7 @@ return(
                {/** if the condition is true render you have no jobs otherwise render the jobs */}
             {!jobs || jobs.length === 0 || !Array.isArray(jobs) ? (
               <tr>
-                <td colSpan="7">YOU HAVE NO JOBS</td>
+                <td colSpan="7">YOU HAVE NO PROJECTS</td>
               </tr>
             ) : (
               jobs.map((job) => (

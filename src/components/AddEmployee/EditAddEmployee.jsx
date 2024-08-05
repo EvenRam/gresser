@@ -19,6 +19,13 @@ function EditEmployee() {
         });
     };
 
+    const handleUnionID = (event) => {
+        dispatch({
+            type: 'EDIT_ONCHANGE',
+            payload: {property:'unionName',value:event.target}
+        })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -75,7 +82,7 @@ function EditEmployee() {
                         />
                     </label>
                 </div>
-                <div>
+                {/* <div>
                     <label>
                         Union ID
                         <input
@@ -86,17 +93,21 @@ function EditEmployee() {
                             onChange={(event) => handleChange(event, 'union_id')}
                         />
                     </label>
-                </div>
+                </div> */}
                 <div>
-                    {/* <label>
-                        Employee Status Active
-                        <input
-                            type="checkbox"
-                            name="employee_status"
-                            checked={editEmployee.employee_status === 1}
-                            onChange={(event) => handleChange(event, 'employee_status')}
-                        />
-                    </label> */}
+                <select
+                id="union_name"
+                name="union_name"
+                value={editEmployee.unionName}
+                onChange={(event) => handleUnionID(event.target)}
+            >
+                <option value="" disabled>Select a union</option>
+                <option value="21 - Bricklayers">21 - Bricklayers</option>
+                <option value="22 - Cement Masons/Finishers">22 - Cement Masons/Finishers</option>
+                <option value="23 - Laborers">23 - Laborers</option>
+                <option value="24 - Operators">24 - Operators</option>
+                <option value="25 - Carpenters">25 - Carpenters</option>
+            </select>
                 </div>
                 <div>
                     <label>
