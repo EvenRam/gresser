@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './AddEmployee.css';
 import ToggleEmployee from './ToggleEmployee';
 
-const AddEmployee = (props) => {
+const AddEmployee = () => {
     const dispatch = useDispatch();
     const employees = useSelector((state) => state.addEmployeeReducer);
 

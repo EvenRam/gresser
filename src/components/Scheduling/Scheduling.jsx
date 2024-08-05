@@ -40,7 +40,7 @@ const Scheduling = () => {
       </div>
 
       <div>
-        <h3>Jobs</h3>
+        {/* <h3>Jobs</h3> */}
         {!jobsBox || jobsBox.length === 0 || !Array.isArray(jobsBox) ? (
           <table className="no-jobs-table">
             <tbody>

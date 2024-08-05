@@ -9,49 +9,69 @@
 
   }
 
-  .table-title{
-    margin-top: 35px;
-    text-align: center;
+  table {
+    width: 90%;
   }
 
-  .job-title{
+  th, td {
+    padding: .2em;
+    min-width: 1.5em;
+    margin-left: 150px;
+    text-align: center;
+
+  }
+
+  thead {
+    background: rgb(218, 221, 222);
+    color: black;
+    text-align: center;
+    
+  }
+
+
+
+
+  .jobs-title{
     text-align: center;
     padding-bottom: 15px;
     font-weight: 900;
+    margin-top: 25px;
+
   }
 
    .job-Number{
-      margin-left: 75px;
+      margin-left: 25px;
       font-weight: 600;
 
   } 
 
   .job-name{
-      margin-left: 25px;
+      margin-left: 15px;
       font-weight: 600;
 
   }
 
   .job-location{
-    margin-left: 25px;
+    margin-left: 10px;
     font-weight: 600;
 
   }
 
   .date-start{
-    margin-left: 25px;
+    margin-left: 10px;
     font-weight: 600;
 
   }
 
   .date-end{
-    margin-left: 25px;
+    margin-left: 10px;
     font-weight: 600;
 
   }
 
 .job-button{
-  margin-left: 15px;
+  margin-left: 1275px;
+  margin-top: 15px;
 
 }
 

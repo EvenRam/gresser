@@ -22,10 +22,10 @@ const UnionBox = ({ id, employees, moveEmployee, union_name }) => {
       ref={drop}
       style={{
         border: '1px solid gray',
-        width: '250px',
+        width: '190px',
         minHeight: '150px',
-        margin: '10px',
-        padding: '10px',
+        margin: '1px',
+        padding: '1px',
         backgroundColor: isOver ? '#f0f0f0' : '#fff',
       }}
     >
