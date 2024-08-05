@@ -24,7 +24,7 @@ const Trades = () => {
                             id={union.id}
                             union_name={union.union_name}
                             employees={union.employees}
-                            color={unionColors[union.union_name]} // Pass the color prop
+                            color={unionColors[union.union_name]} 
                         />
                     </div>
                 ))}
