@@ -104,7 +104,7 @@ const JobHistory = () => {
 
   return (
     <div>
-      <h1 className="jobhistory_title">Job History</h1>
+      <h1 className="jobhistory_title">Project History</h1>
       <div className="date">
         <label>
           Date:
@@ -114,13 +114,13 @@ const JobHistory = () => {
             onChange={(e) => setFilterDate(e.target.value)}
           />
         </label>
-        <button onClick={generateReport}>Generate Report</button>
+        <button className='reports-btn' onClick={generateReport}>Generate Report</button>
       </div>
       <table className="history-table">
         <thead>
           <tr>
-            <th>Job Number</th>
-            <th>Job Name</th>
+            <th>Project Number</th>
+            <th>Name</th>
             <th>Location</th>
             <th>Start Date</th>
             <th>End Date</th>
@@ -133,7 +133,7 @@ const JobHistory = () => {
         <tbody className="history-tbody">
           {jobs.length === 0 ? (
             <tr>
-              <td colSpan="8">No jobs occurred on this day</td>
+              <td colSpan="8">No Projects occurred on this day</td>
             </tr>
           ) : (
             jobs.map((job) => (
@@ -169,7 +169,7 @@ const JobHistory = () => {
             <table className="report-table">
               <tbody>
                 <tr>
-                  <td>Total Jobs:</td>
+                  <td>Total Projects:</td>
                   <td>{report.totalJobs}</td>
                 </tr>
                 <tr>

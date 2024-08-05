@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: flex-start;
   width: 50%;
-  padding: 20px;
+  padding: 10px;
 }
 
 .unions-container {
@@ -11,13 +11,18 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   max-width: 100%;
+  margin-left: 20px;
+  
 }
 
 .union-box {
-  flex: 0 0 45%;
+  flex: 0 0 5%;
   box-sizing: border-box;
-  padding: 5px;
-  margin: 5px;
+  padding: 2px;
+  margin: 2px;
+  
 }
 
-  
+.union-title{
+  margin-left: 20px;
+}
