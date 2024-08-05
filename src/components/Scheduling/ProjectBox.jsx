@@ -2,6 +2,7 @@ import React from 'react';
 import { useDrop } from 'react-dnd';
 import Employee from './Employee';
 import { useDispatch, useSelector } from 'react-redux';
+import '../Trades/Box.css'
 
 
 const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
@@ -32,7 +33,8 @@ const ProjectBox = ({ id, employees, moveEmployee, job_name }) => {
         backgroundColor: isOver ? 'white' : 'white',
       }}
     >
-      <h4>{job_name}</h4>
+      <h4 className='small-text'>{job_name}</h4>
+      <div className="separator"></div>
       {employees.length === 0 ? (
         <p>No employees assigned</p>
       ) : (
