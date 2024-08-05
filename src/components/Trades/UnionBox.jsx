@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDrop } from 'react-dnd';
-import { useDispatch, useSelector } from 'react-redux';
 import Employee from '../Scheduling/Employee';
+import './Box.css';
 
-const UnionBox = ({ id, employees, moveEmployee, union_name }) => {
+const UnionBox = ({ id, employees, moveEmployee, union_name, color }) => {
   console.log('NAME in union box:', union_name);
-  console.log('id in union box', id )
+  console.log('id in union box', id);
   const [{ isOver }, drop] = useDrop(() => ({
     accept: 'EMPLOYEE',
     drop: (item) => {
@@ -29,7 +29,8 @@ const UnionBox = ({ id, employees, moveEmployee, union_name }) => {
         backgroundColor: isOver ? '#f0f0f0' : '#fff',
       }}
     >
-      <h4>{union_name}</h4>
+      <h4 className='small-text' style={{ color }}>{union_name}</h4>
+      <div className="separator"></div>
       {employees.length === 0 ? (
         <p>No employees assigned</p>
       ) : (
@@ -38,7 +39,6 @@ const UnionBox = ({ id, employees, moveEmployee, union_name }) => {
             key={employee.id}
             id={employee.id}
             name={`${employee.first_name} ${employee.last_name}`}
-        
           />
         ))
       )}
@@ -47,4 +47,5 @@ const UnionBox = ({ id, employees, moveEmployee, union_name }) => {
 };
 
 export default UnionBox;
+
 

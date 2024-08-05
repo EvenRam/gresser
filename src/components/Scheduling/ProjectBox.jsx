@@ -2,6 +2,7 @@ import React from 'react';
 import { useDrop } from 'react-dnd';
 import Employee from './Employee';
 import { useDispatch, useSelector } from 'react-redux';
+import '../Trades/Box.css'
 
 
 const ProjectBox = ({ id, employees,moveEmployee, job_name }) => {
@@ -36,6 +37,7 @@ const ProjectBox = ({ id, employees,moveEmployee, job_name }) => {
         backgroundColor: isOver ? 'white' : 'white',
       }}
     >
+
       <h4 className='projectboxname'>{job_name}</h4>
       <hr className='namelinebreak'/>
       {employees.length === 0 ? (
