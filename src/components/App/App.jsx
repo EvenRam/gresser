@@ -59,7 +59,13 @@ function App() {
           </Route>
 
           <ProtectedRoute exact path="/user">
-            <UserPage />
+          <DndProvider backend={HTML5Backend}>
+              
+          <div className="parent-container">
+          <Scheduling />
+          <Trades />
+        </div>
+            </DndProvider>
           </ProtectedRoute>
 
           <ProtectedRoute exact path="/info">
