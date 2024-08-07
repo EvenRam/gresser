@@ -1,4 +1,3 @@
-
 Description
 Duration: 2 Week Sprint
 
